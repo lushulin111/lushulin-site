@@ -881,6 +881,7 @@ function initFlipbook() {
         overlay.classList.remove('open');
         overlay.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
+        document.documentElement.style.overflow = '';
         // 还原到原始父节点（课程卡片内）
         if (overlay._originalParent) {
           overlay._originalParent.appendChild(overlay);
@@ -908,6 +909,7 @@ function initFlipbook() {
       overlay.classList.add('open');
       overlay.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
     });
   });
 
@@ -919,6 +921,7 @@ function initFlipbook() {
       open.classList.remove('open');
       open.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
+        document.documentElement.style.overflow = '';
       // 还原到原始父节点
       if (open._originalParent) open._originalParent.appendChild(open);
     } else if (e.key === 'ArrowRight') {
