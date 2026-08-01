@@ -2957,8 +2957,7 @@ mark.search-hit {
   transform: translateY(24px) scale(0.97);
   transition: transform 0.35s var(--ease);
   pointer-events: auto;
-  overflow-y: auto;
-  overscroll-behavior: contain;
+  overflow: hidden;
 }
 
 .flipbook-overlay.open .fb-modal {
