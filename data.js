@@ -139,9 +139,9 @@ const SITE_CONFIG = {
         key: "interest",
         label: "兴趣类课程",
         active: true,
-        cover: "摄影公开课课程设计/1.png?v=2",
+        cover: "摄影公开课课程设计/1.webp?v=2",
         images: [
-          "摄影公开课课程设计/1.png?v=2",
+          "摄影公开课课程设计/1.webp?v=2",
           "摄影公开课课程设计/2.webp",
           "摄影公开课课程设计/3.webp",
           "摄影公开课课程设计/4.webp",
@@ -175,7 +175,7 @@ const SITE_CONFIG = {
         chain: [
           {
             title: "公域引流课程",
-            img: "摄影公开课课程设计/口播视频录制.png?v=3",
+            img: "摄影公开课课程设计/口播视频录制.webp?v=3",
             desc: {
               title: "公域引流·摄影入门系列课程研发思路",
               points: [
