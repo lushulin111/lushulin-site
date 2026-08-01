@@ -8,7 +8,7 @@ const SITE_CONFIG = {
   enName: "Lu Shulin",
   title: "知识产品架构师 · 转化链路设计者",
   subtitle: "五年的知识付费与内容转化经验，专注用户教育场景。把复杂产品拆解成零基础用户能听懂的内容结构，并把它变成可复制的SOP",
-  avatar: "assets/photos/avatar.jpg",
+  avatar: "assets/photos/avatar.webp",
 
   // 联系方式（请替换成你的真实信息）
   contacts: {
@@ -59,14 +59,14 @@ const SITE_CONFIG = {
       "愿意把我的方法论复制给团队，而不是只让我自己出单"
     ],
     life_photos: [
-      "assets/photos/life1.jpg",
-      "assets/photos/life2.jpg"
+      "assets/photos/life1.webp",
+      "assets/photos/life2.webp"
     ]
   },
 
   // 关于我（长文版，放工作经历下方）
   aboutLong: {
-    photo: "个人照片/生活照1.jpg",
+    photo: "个人照片/生活照1.webp",
     subtitle: "把复杂产品拆解成零基础用户能听懂、能上手的内容结构",
     blocks: [
       { type: "p", html: "我做了<strong>5年</strong>知识付费的课程内容交付。" },
@@ -94,10 +94,10 @@ const SITE_CONFIG = {
 
   // IP 作品展示（首页最下方）
   ipShowcase: {
-    comparisonImage: "抖音视频数据/抖音视频数据对比.png",
+    comparisonImage: "抖音视频数据/抖音视频数据对比.webp",
     videos: [
       {
-        file: "抖音视频数据/美资视频截图.png",
+        file: "抖音视频数据/美资视频截图.webp",
         title: "数据最高原创口播长视频截图示例",
         desc: "本条原创教学类长视频播放量达50W以上，点赞7000+，本系列视频【摄影入门教学合集】为公司引流 500+ 精准流量",
         douyinLink: "https://v.douyin.com/ie30F36pVyo/"
@@ -115,7 +115,7 @@ const SITE_CONFIG = {
         label: "创业类课程",
         active: true,
         video: "TK公开课视频/TK公开课切片.mp4",
-        poster: "TK公开课视频/视频封面.png",
+        poster: "TK公开课视频/视频封面.webp",
         videoTitle: "TK公开课·三差模型直播切片",
         // 左侧文字（三差模型设计理念）
         blocks: [
@@ -142,16 +142,16 @@ const SITE_CONFIG = {
         cover: "摄影公开课课程设计/1.png?v=2",
         images: [
           "摄影公开课课程设计/1.png?v=2",
-          "摄影公开课课程设计/2.png",
-          "摄影公开课课程设计/3.png",
-          "摄影公开课课程设计/4.png",
-          "摄影公开课课程设计/5.png",
-          "摄影公开课课程设计/6.png",
-          "摄影公开课课程设计/7.png",
-          "摄影公开课课程设计/8.png",
-          "摄影公开课课程设计/9.png"
+          "摄影公开课课程设计/2.webp",
+          "摄影公开课课程设计/3.webp",
+          "摄影公开课课程设计/4.webp",
+          "摄影公开课课程设计/5.webp",
+          "摄影公开课课程设计/6.webp",
+          "摄影公开课课程设计/7.webp",
+          "摄影公开课课程设计/8.webp",
+          "摄影公开课课程设计/9.webp"
         ],
-        logicImg: "assets/images/course-logic-jingzhun.png"
+        logicImg: "assets/images/course-logic-jingzhun.webp"
       },
       {
         key: "compare",
@@ -188,7 +188,7 @@ const SITE_CONFIG = {
           },
           {
             title: "私域销转课程",
-            img: "摄影公开课课程设计/1.png",
+            img: "摄影公开课课程设计/1.webp",
             desc: {
               title: "私域销转｜摄影入门训练营研发思路",
               points: [
@@ -200,7 +200,7 @@ const SITE_CONFIG = {
           },
           {
             title: "VIP系列小课",
-            img: "摄影公开课课程设计/VIP小课研发.jpg",
+            img: "摄影公开课课程设计/VIP小课研发.webp",
             desc: {
               title: "VIP 附属｜约拍小灶提升课 研发思路",
               points: [
@@ -327,7 +327,7 @@ const SITE_CONFIG = {
     avgEngagementRate: "84%",
     topVideoViews: 7419,
     totalViews: "30,000+",
-    dataImage: "assets/images/douyin-data.png",
+    dataImage: "assets/images/douyin-data.webp",
     // 视频明细（从截图整理出来）
     videosData: [
       { id: "@Mars_艺术影像·伍伍摄影", title: "第3集：终于有人把人像摆姿规律讲清楚了！！！", views: 7419, likes: 136, saves: 6725, saveLikeRate: "90.65%", date: "4月20日" },
