@@ -103,7 +103,7 @@ const Render = {
           </div>
           <div class="course-book-cover" data-open-book title="点击打开课件">
             <div class="book-cover-inner">
-              <img src="${part.cover}" alt="${part.label}封面">
+              <img loading="lazy" src="${part.cover}" alt="${part.label}封面">
               <span class="book-spine"></span>
             </div>
             <p class="book-open-label">打开课件</p>
@@ -115,7 +115,7 @@ const Render = {
               <p class="section-desc">从「课程定位」到「设计亮点」，一张图看清引流课的设计脉络（点击图片可放大查看细节）</p>
             </div>
             <div class="logic-img-wrap">
-              <img src="${part.logicImg}" alt="摄影课程设计逻辑图" class="logic-img zoomable" data-zoom-src="${part.logicImg}">
+              <img loading="lazy" src="${part.logicImg}" alt="摄影课程设计逻辑图" class="logic-img zoomable" data-zoom-src="${part.logicImg}">
               <span class="logic-zoom-hint">🔍 点击放大</span>
             </div>
           </div>
@@ -125,8 +125,8 @@ const Render = {
               <button type="button" class="fb-close" data-close-book aria-label="关闭">×</button>
               <div class="fb-stage">
                 <div class="fb-book" data-images='${JSON.stringify(part.images)}'>
-                  <div class="fb-page fb-under"><img src="${part.images[0]}" alt="课件 1"></div>
-                  <div class="fb-page fb-top"><img src="${part.images[0]}" alt="课件 1"></div>
+                  <div class="fb-page fb-under"><img loading="lazy" src="${part.images[0]}" alt="课件 1"></div>
+                  <div class="fb-page fb-top"><img loading="lazy" src="${part.images[0]}" alt="课件 1"></div>
                 </div>
               </div>
               <div class="fb-controls">
@@ -184,7 +184,7 @@ const Render = {
               <h4 class="chain-title">${c.title}</h4>
             </div>
             <div class="chain-img-wrap">
-              <img src="${c.img}" alt="${c.title}" class="chain-img zoomable" data-zoom-src="${c.img}" data-zoom-type="chain">
+              <img loading="lazy" src="${c.img}" alt="${c.title}" class="chain-img zoomable" data-zoom-src="${c.img}" data-zoom-type="chain">
               <span class="logic-zoom-hint">🔍 点击放大</span>
               ${c.desc ? '<div class="chain-desc-source" hidden>' + formatChainDesc(c.desc) + '</div>' : ''}
             </div>
@@ -263,7 +263,7 @@ const Render = {
       videos.innerHTML = data.videos.map(v => {
         const isImage = /\.(png|jpe?g|gif|webp)$/i.test(v.file);
         const media = isImage
-          ? `<img src="${v.file}" alt="${v.title}" class="ip-media-img gallery-img">`
+          ? `<img loading="lazy" src="${v.file}" alt="${v.title}" class="ip-media-img gallery-img">`
           : `<video controls preload="metadata"><source src="${v.file}" type="video/mp4">你的浏览器不支持视频播放。</video>`;
         return `
         <div class="ip-video-card reveal">
