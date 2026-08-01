@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>陆姝霖 · 个人网站</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- 动态背景 -->
+  <div class="bg-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- 移动端顶部搜索栏（桌面端隐藏） -->
+  <div class="mobile-search-bar" id="mobileSearchBar">
+    <div class="msb-inner">
+      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="text" class="msb-input" id="mobileSiteSearch" placeholder="搜索内容，例如：课程设计" aria-label="搜索网站内容" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="mobileSearchSuggestions" aria-autocomplete="list">
+      <button type="button" class="msb-clear" id="msbClear" aria-label="清空搜索">✕</button>
+    </div>
+    <ul class="search-suggestions msb-suggestions" id="mobileSearchSuggestions" role="listbox" hidden></ul>
+  </div>
+
+  <!-- 页面内容 -->
+  <main id="main">
+
+    <!-- 左侧悬浮导航 -->
+    <aside class="side-nav" id="sideNav">
+      <a class="side-nav-item" href="#homeHero" data-target="homeHero">
+        <span class="side-dot"></span>
+        <span class="side-label">首页</span>
+      </a>
+      <a class="side-nav-item" href="#homeAbout" data-target="homeAbout">
+        <span class="side-dot"></span>
+        <span class="side-label">关于我</span>
+      </a>
+      <a class="side-nav-item" href="#homeCapabilities" data-target="homeCapabilities">
+        <span class="side-dot"></span>
+        <span class="side-label">核心能力</span>
+      </a>
+      <a class="side-nav-item" href="#homeCourse" data-target="homeCourse">
+        <span class="side-dot"></span>
+        <span class="side-label">课程设计</span>
+      </a>
+      <a class="side-nav-item" href="#homeIpShowcase" data-target="homeIpShowcase">
+        <span class="side-dot"></span>
+        <span class="side-label">IP作品</span>
+      </a>
+      <a class="side-nav-item" href="#homeJourney" data-target="homeJourney">
+        <span class="side-dot"></span>
+        <span class="side-label">工作旅程</span>
+      </a>
+      <a class="side-nav-item" href="#homeContact" data-target="homeContact">
+        <span class="side-dot"></span>
+        <span class="side-label">联系我</span>
+      </a>
+    </aside>
+
+    <!-- 首页 -->
+    <section class="page page-home active" id="home" data-page="home">
+      <div class="hero" id="homeHero">
+        <div class="hero-layout">
+          <div class="hero-content">
+            <h1 class="hero-title">
+              <span class="title-line" id="titleName">陆姝霖</span>
+              <span class="title-subtitle" id="titleRole">知识产品架构师 · 转化链路设计者</span>
+            </h1>
+            <p class="hero-desc" id="titleSubtitle">五年的知识付费与内容转化经验，专注用户教育场景。把复杂产品拆解成零基础用户能听懂的内容结构，并把它变成可复制的SOP</p>
+            <div class="hero-search">
+              <div class="search-box">
+                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <input type="text" class="search-input" id="siteSearch" placeholder="搜索你想知道关于我的内容，例如：课程设计" aria-label="搜索网站内容" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="searchSuggestions" aria-autocomplete="list">
+              </div>
+              <ul class="search-suggestions" id="searchSuggestions" role="listbox" hidden></ul>
+            </div>
+          </div>
+          <div class="hero-avatar">
+            <div class="avatar-ring">
+              <img src="assets/photos/avatar.jpg" alt="陆姝霖">
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stats-grid" id="heroStats"></div>
+        </div>
+
+        <div class="hero-scroll">
+          <span>向下滚动探索更多</span>
+          <div class="scroll-arrow"></div>
+        </div>
+      </div>
+
+      <!-- 关于我（首页版） -->
+      <div class="section about-long-section" id="homeAbout">
+        <div class="section-header">
+          <span class="section-tag">ABOUT ME</span>
+          <h2 class="section-title">关于我</h2>
+          <p class="section-desc" id="aboutLongSubtitleHome"></p>
+        </div>
+        <div class="about-long-photo reveal">
+          <img src="" alt="陆姝霖生活照" id="aboutLongPhotoHome">
+        </div>
+        <div class="about-long-card reveal" id="aboutLongCardHome"></div>
+      </div>
+
+      <!-- 核心能力板块 -->
+      <div class="section capabilities-section" id="homeCapabilities">
+        <div class="section-header">
+          <span class="section-tag">CORE ABILITIES</span>
+          <h2 class="section-title">我的核心能力</h2>
+          <p class="section-desc">五年来围绕用户教育这件事，沉淀下来的可复用能力</p>
+        </div>
+        <div class="capability-note reveal" id="capabilityNote"></div>
+        <div class="capabilities-grid" id="capabilitiesGrid"></div>
+      </div>
+
+      <!-- 课程研发设计展示 -->
+      <div class="section course-showcase-section" id="homeCourse">
+        <div class="section-header">
+          <span class="section-tag">COURSE DESIGN</span>
+          <h2 class="section-title">课程研发设计展示</h2>
+          <p class="section-desc">从「问题前置」到「解决方案」的课程结构设计拆解</p>
+        </div>
+        <div class="course-parts" id="courseParts"></div>
+      </div>
+
+      <!-- IP 作品展示 -->
+      <div class="section ip-showcase-section" id="homeIpShowcase">
+        <div class="section-header">
+          <span class="section-tag">IP WORKS</span>
+          <h2 class="section-title">IP作品展示</h2>
+          <p class="section-desc">真实数据对比 + 原创内容原件</p>
+        </div>
+
+        <div class="ip-compare reveal">
+          <img src="" alt="抖音视频数据对比" id="ipCompareImg" class="ip-compare-img">
+          <p class="ip-compare-caption" id="ipCompareCaption"></p>
+        </div>
+
+        <div class="ip-videos" id="ipVideos"></div>
+      </div>
+
+      <!-- 工作旅程时间线 -->
+      <div class="section journey-section" id="homeJourney">
+        <div class="section-header">
+          <span class="section-tag">OUR JOURNEY</span>
+          <h2 class="section-title">我的工作旅程</h2>
+          <p class="section-desc">从讲师到内容操盘手，每一段经历都在沉淀我对「用户教育」的理解</p>
+        </div>
+        <div class="journey-timeline" id="journeyTimeline"></div>
+      </div>
+
+      <!-- 联系方式板块 -->
+      <div class="section contact-section" id="homeContact">
+        <p class="contact-kicker">保持联系</p>
+        <p class="contact-invite">面试邀约或合作交流，欢迎随时联系</p>
+        <div class="contact-actions">
+          <span class="contact-btn contact-btn--static" aria-label="我的邮箱">✉ 我的邮箱</span>
+        </div>
+        <p class="contact-email">lushulin98@qq.com</p>
+        <p class="contact-promise">通常在 <strong>24 小时内</strong>回复</p>
+      </div>
+    </section>
+
+
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <div class="footer-content">
+      <p class="footer-text">© 2026 陆姝霖 · 用内容连接用户教育</p>
+      <div class="footer-links">
+        <a href="#" id="backToTop">回到顶部 ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 图片放大灯箱 -->
+  <div class="lightbox" id="lightbox">
+    <span class="lightbox-close" id="lightboxClose">&times;</span>
+    <img id="lightboxImg" src="" alt="">
+  </div>
+
+  <!-- 缩放浮层（逻辑图等可缩放图片） -->
+  <div class="zoom-modal" id="zoomModal" aria-hidden="true">
+    <span class="zoom-close" id="zoomClose">&times;</span>
+    <div class="zoom-stage" id="zoomStage">
+      <div class="zoom-img-wrap">
+        <img id="zoomImg" src="" alt="">
+      </div>
+      <div class="zoom-panel" id="zoomPanel" hidden>
+        <!-- 课程研发思路说明（待补充） -->
+      </div>
+    </div>
+    <div class="zoom-controls">
+      <button type="button" class="zoom-btn" id="zoomOut" aria-label="缩小">−</button>
+      <span class="zoom-level" id="zoomLevel">100%</span>
+      <button type="button" class="zoom-btn" id="zoomIn" aria-label="放大">+</button>
+      <button type="button" class="zoom-btn zoom-reset" id="zoomReset">重置</button>
+      <button type="button" class="zoom-btn zoom-next" id="zoomNext" aria-label="下一张" hidden>下一张 →</button>
+    </div>
+    <p class="zoom-tip" id="zoomTip">滚轮 / 按钮可放大至 200% · 拖拽或方向键上下左右移动 · 点击图片退出放大</p>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
