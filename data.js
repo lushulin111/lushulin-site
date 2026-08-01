@@ -316,27 +316,9 @@ const SITE_CONFIG = {
     { category: "个人荣誉", items: ["微博认证摄影博主", "图虫签约摄影师", "VIVO 认证摄影师"] }
   ],
 
-  // 代表作品视频
-  videos: [
-    {
-      id: 1,
-      title: "TK 公开课 · 摄影教学切片",
-      desc: "鹿白讲摄影——对焦的本质。代表矩阵账号上的数据第一内容，收藏点赞比超过 100%。",
-      file: "assets/videos/teaching.mp4",
-      douyinLink: "https://v.douyin.com/ie30F36pVyo/",
-      thumbnail: "assets/photos/life1.jpg",
-      tags: ["课程研发", "摄影教学", "口播"]
-    },
-    {
-      id: 2,
-      title: "美资视频原创作品",
-      desc: "独立完成的美妆/穿搭类短视频内容，验证选题与文案能力。（抖音原片链接同上，可跳转验证）",
-      file: "assets/videos/douyin-work.mp4",
-      douyinLink: "https://v.douyin.com/ie30F36pVyo/",
-      thumbnail: "assets/photos/life2.jpg",
-      tags: ["短视频策划", "口播", "原创内容"]
-    }
-  ],
+  // 代表作品视频（GitHub Pages 部署版：teaching.mp4 与 douyin-work.mp4 超 100MB 限制，
+  // 这里留空，页面相应位置不渲染。如需恢复，请把文件压缩至 100MB 内并恢复下方两个条目。）
+  videos: [],
 
   // 抖音矩阵账号数据
   douyin: {
@@ -445,8 +427,7 @@ const SITE_CONFIG = {
       { target: "付费转化", method: "软塑造贯穿 + 下节课预告「用光写诗」+ 作业完成者转化率更高" }
     ],
     // 配套材料
-    materials: ["PPT 课件", "逐字稿", "对焦急救手册（学员可带走）", "50 大相机参数设置参考大全（福利钩子）"],
-    pptFile: "assets/files/course-ppt.pptx"
+    materials: ["PPT 课件", "逐字稿", "对焦急救手册（学员可带走）", "50 大相机参数设置参考大全（福利钩子）"]
   },
 
   // 联系渠道（悬浮层 + 腾讯文档收集表）
