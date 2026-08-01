@@ -71,10 +71,43 @@ with open(CHECKPOINT, "a", encoding="utf-8") as ckpt:
             ckpt.flush()
         except urllib.error.HTTPError as e:
             err_body = e.read().decode("utf-8", errors="replace")[:200]
+            # 文件已存在 → 拿 sha 后重 PUT 以更新
             if e.code in (409, 422) and ("already" in err_body.lower() or "sha" in err_body.lower()):
-                print(f"[{i}/{len(to_upload)}] SKIP(exists)  {path}")
-                ckpt.write(path + "\n")
-                ckpt.flush()
+                try:
+                    get_req = urllib.request.Request(
+                        url,
+                        headers={
+                            "Authorization": f"token {TOKEN}",
+                            "Accept": "application/vnd.github+json",
+                            "X-GitHub-Api-Version": "2022-11-28",
+                            "User-Agent": "WorkBuddy-Deploy",
+                        },
+                    )
+                    meta = json.loads(urllib.request.urlopen(get_req, timeout=60).read())
+                    body2 = json.dumps(
+                        {"message": f"update {path}", "content": b64, "branch": "main", "sha": meta["sha"]},
+                        ensure_ascii=False,
+                    )
+                    put_req = urllib.request.Request(
+                        url,
+                        data=body2.encode("utf-8"),
+                        method="PUT",
+                        headers={
+                            "Authorization": f"token {TOKEN}",
+                            "Accept": "application/vnd.github+json",
+                            "Content-Type": "application/json",
+                            "X-GitHub-Api-Version": "2022-11-28",
+                            "User-Agent": "WorkBuddy-Deploy",
+                        },
+                    )
+                    resp = urllib.request.urlopen(put_req, timeout=300)
+                    print(f"[{i}/{len(to_upload)}] UPDATE {resp.getcode()}  {size/1024:7.1f}KB  {path}")
+                    ok += 1
+                    ckpt.write(path + "\n")
+                    ckpt.flush()
+                except Exception as retry_err:
+                    print(f"[{i}/{len(to_upload)}] FAIL(retry)  {path}: {retry_err}")
+                    fail += 1
             else:
                 print(f"[{i}/{len(to_upload)}] FAIL {e.code}  {path}: {err_body}")
                 fail += 1
