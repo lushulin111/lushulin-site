@@ -3,210 +3,2348 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>陆姝霖 · 个人网站</title>
-  <link rel="stylesheet" href="style.css">
+  <title>陆姝霖 · 个人网站 · 设计预览 v2</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter+Tight:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@300;400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================
+       设计预览 v2 · 新派编辑刊物 (Modern Editorial)
+       原则：保留所有内容，只改视觉语言
+       ============================================ */
+
+    :root {
+      --bg: #f7f5f0;          /* 微暖纸白 (比 v1 更干净) */
+      --surface: #ffffff;
+      --ink: #0f0e0c;         /* 墨黑 */
+      --ink-2: #3a3835;       /* 次级文字 */
+      --ink-3: #75716a;       /* 弱化文字 */
+      --ink-4: #a8a49c;       /* 极弱文字 */
+      --hair: #e4e1da;        /* 细线 */
+      --hair-strong: #cac6bd;
+      --frame: #3a3835;       /* 复古画框 · 深棕木色 */
+      --matte: #ede8de;       /* 画框衬边 · 暖米色 */
+      --accent: #d93544;      /* 朱红 · 当代杂志标志色 */
+      --accent-soft: rgba(217, 53, 68, 0.08);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Inter Tight", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      overflow-x: hidden;
+      font-feature-settings: "ss01", "cv11";
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .zh-serif { font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif; font-weight: 400; }
+
+    /* === 顶部条 === */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px 56px;
+      background: rgba(247,245,240,0.88);
+      backdrop-filter: blur(20px) saturate(140%);
+      -webkit-backdrop-filter: blur(20px) saturate(140%);
+      border-bottom: 1px solid var(--hair);
+      font-size: 13px;
+    }
+    .topbar-logo {
+      font-family: "Fraunces", serif;
+      font-weight: 500;
+      font-size: 15px;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+    .topbar-logo .zh { font-family: "Noto Serif SC", serif; font-weight: 500; }
+    .topbar-logo .mark {
+      display: inline-block;
+      width: 8px; height: 8px;
+      background: var(--accent);
+      margin: 0 4px;
+    }
+    .topbar-nav {
+      display: flex;
+      gap: 36px;
+      justify-content: center;
+    }
+    .topbar-nav a {
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      transition: color 0.2s ease;
+      position: relative;
+      padding: 8px 0;
+    }
+    .topbar-nav a:hover { color: var(--accent); }
+    .topbar-issue {
+      text-align: right;
+      font-family: "Fraunces", serif;
+      font-style: italic;
+      font-size: 12px;
+      color: var(--ink-3);
+      letter-spacing: 0.08em;
+    }
+    .topbar-issue .num { color: var(--accent); font-weight: 500; font-style: normal; font-family: "Fraunces", serif; }
+
+    /* === Section 通用 === */
+    .section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 110px 56px;
+      position: relative;
+    }
+    .section-tight { padding: 80px 56px; }
+
+    .sec-head {
+      display: grid;
+      grid-template-columns: 100px 1fr auto;
+      gap: 32px;
+      align-items: end;
+      margin-bottom: 64px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--ink);
+    }
+    .sec-num {
+      font-family: "Fraunces", serif;
+      font-weight: 300;
+      font-size: 72px;
+      line-height: 0.85;
+      color: var(--ink);
+      letter-spacing: -0.04em;
+      font-feature-settings: "tnum";
+    }
+    .sec-num .slash { color: var(--accent); }
+    .sec-title-zh {
+      font-family: "Noto Serif SC", serif;
+      font-size: 36px;
+      font-weight: 500;
+      line-height: 1.25;
+      letter-spacing: 0.01em;
+      color: var(--ink);
+    }
+    .sec-title-en {
+      font-family: "Fraunces", serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 13px;
+      color: var(--ink-3);
+      letter-spacing: 0.06em;
+      margin-top: 6px;
+    }
+    .sec-tag {
+      font-family: "Inter Tight", sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      padding: 6px 12px;
+      border: 1px solid var(--accent);
+      border-radius: 0;
+      align-self: end;
+      white-space: nowrap;
+    }
+
+    /* ============================================
+       HERO —— 不对称编辑型
+       ============================================ */
+    .hero {
+      padding: 80px 56px 100px;
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .hero-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--ink);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--ink-2);
+    }
+    .hero-meta-row .dot {
+      display: inline-block;
+      width: 6px; height: 6px;
+      background: var(--accent);
+      margin: 0 8px;
+      vertical-align: middle;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 72px;
+      align-items: center;
+      margin-top: 44px;
+    }
+    .hero-text { position: relative; }
+    .hero-eyebrow {
+      font-family: "Inter Tight", sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      width: 40px;
+      height: 2px;
+      background: var(--accent);
+    }
+    .hero-name {
+      font-family: "Noto Serif SC", serif;
+      font-size: clamp(56px, 7.2vw, 96px);
+      font-weight: 500;
+      line-height: 1.05;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+      margin-bottom: 20px;
+    }
+    .hero-name .mark-dot {
+      display: inline-block;
+      width: 0.13em;
+      height: 0.13em;
+      background: var(--accent);
+      margin-left: 0.1em;
+      vertical-align: 0.28em;
+      border-radius: 50%;
+    }
+    .hero-role {
+      font-family: "Fraunces", serif;
+      font-weight: 400;
+      font-size: clamp(18px, 1.9vw, 24px);
+      color: var(--ink);
+      line-height: 1.55;
+      margin-bottom: 18px;
+      max-width: 520px;
+    }
+    .hero-role em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .hero-desc {
+      font-size: 15px;
+      color: var(--ink-2);
+      line-height: 1.85;
+      max-width: 500px;
+      margin-bottom: 32px;
+    }
+    .hero-cta-row {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .hero-cta-row a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      height: 48px;
+      padding: 0 24px;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      white-space: nowrap;
+    }
+    .cta-primary {
+      background: var(--ink);
+      color: var(--bg);
+      box-shadow: 0 6px 18px rgba(15,14,12,0.16);
+    }
+    .cta-primary:hover {
+      background: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(217,53,68,0.22);
+    }
+    .cta-secondary {
+      background: transparent;
+      color: var(--ink-2);
+      padding: 0 16px;
+      position: relative;
+    }
+    .cta-secondary::after {
+      content: '';
+      position: absolute;
+      bottom: 8px;
+      left: 16px;
+      right: 16px;
+      height: 1px;
+      background: var(--hair-strong);
+      transition: background 0.25s ease;
+    }
+    .cta-secondary:hover { color: var(--accent); }
+    .cta-secondary:hover::after { background: var(--accent); }
+    .cta-icon {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      transition: transform 0.25s ease;
+    }
+    .cta-primary:hover .cta-icon,
+    .cta-secondary:hover .cta-icon { transform: translateX(3px); }
+
+    /* 右侧视觉 */
+    .hero-visual { position: relative; }
+    .hero-photo {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 2px;
+      overflow: hidden;
+      position: relative;
+      margin-left: auto;
+      padding: 8px;
+      background: var(--matte);
+      border: 1px solid var(--frame);
+      box-shadow:
+        inset 0 0 0 1px rgba(58,56,53,0.1),
+        0 20px 40px rgba(15,14,12,0.14),
+        0 4px 10px rgba(15,14,12,0.08);
+    }
+    .hero-photo img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      display: block;
+      filter: contrast(1.04) saturate(0.95);
+      border: 1px solid rgba(58,56,53,0.08);
+    }
+    /* 极简噪点 */
+    .hero-photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.18 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+      mix-blend-mode: overlay;
+      opacity: 0.4;
+      pointer-events: none;
+    }
+    .hero-photo-meta {
+      margin-top: 12px;
+      max-width: 300px;
+      margin-left: auto;
+      font-family: "Inter Tight", sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--ink-3);
+      line-height: 1.5;
+      text-align: right;
+      letter-spacing: 0.04em;
+    }
+    /* 编号徽章 */
+    .hero-photo-num {
+      position: absolute;
+      top: -8px;
+      right: 0;
+      font-family: "Inter Tight", sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      color: var(--bg);
+      background: var(--accent);
+      padding: 5px 10px;
+      border-radius: 3px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      box-shadow: 0 4px 10px rgba(217,53,68,0.25);
+    }
+
+    /* === 业绩数据 === */
+    .stats {
+      border-top: 1px solid var(--ink);
+      border-bottom: 1px solid var(--ink);
+      max-width: 1100px;
+      margin: 48px auto 0;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .stat {
+      padding: 40px 28px;
+      border-right: 1px solid var(--hair);
+      position: relative;
+    }
+    .stat:last-child { border-right: none; }
+    .stat-num {
+      font-family: "Fraunces", serif;
+      font-weight: 300;
+      font-size: clamp(48px, 5vw, 72px);
+      line-height: 0.95;
+      color: var(--ink);
+      letter-spacing: -0.04em;
+      font-feature-settings: "tnum";
+    }
+    .stat-num .u { color: var(--accent); font-size: 0.4em; vertical-align: 0.55em; margin-left: 0.1em; font-weight: 400; }
+    .stat-label {
+      margin-top: 16px;
+      font-family: "Noto Sans SC", sans-serif;
+      font-size: 14px;
+      color: var(--ink-2);
+      letter-spacing: 0.02em;
+    }
+    .stat-en {
+      margin-top: 6px;
+      font-family: "Fraunces", serif;
+      font-style: italic;
+      font-size: 11px;
+      color: var(--ink-3);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* ============================================
+       关于我 —— 编辑排版
+       ============================================ */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 72px;
+      align-items: start;
+    }
+    .about-side { position: sticky; top: 100px; }
+    .about-side-photo {
+      border-radius: 2px;
+      overflow: hidden;
+      padding: 10px;
+      background: var(--matte);
+      border: 1px solid var(--frame);
+      box-shadow:
+        inset 0 0 0 1px rgba(58,56,53,0.1),
+        0 20px 50px rgba(15,14,12,0.15),
+        0 4px 10px rgba(15,14,12,0.08);
+    }
+    .about-side-photo img {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      display: block;
+      filter: contrast(1.05) saturate(0.92);
+      border: 1px solid rgba(58,56,53,0.08);
+    }
+    .about-side-caption {
+      margin-top: 16px;
+      font-family: "Fraunces", serif;
+      font-style: italic;
+      font-size: 12px;
+      color: var(--ink-3);
+      line-height: 1.7;
+      letter-spacing: 0.03em;
+    }
+    .about-side-caption .accent { color: var(--accent); }
+
+    .about-body { max-width: 740px; }
+    .about-quote {
+      font-family: "Noto Serif SC", serif;
+      font-size: 30px;
+      font-weight: 400;
+      line-height: 1.55;
+      color: var(--ink);
+      letter-spacing: 0.01em;
+      margin-bottom: 48px;
+      padding: 24px 0 24px 32px;
+      border-left: 4px solid var(--accent);
+    }
+    .about-quote em {
+      font-family: "Fraunces", serif;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--accent);
+    }
+    .about-body p {
+      margin-bottom: 22px;
+      font-size: 16px;
+      line-height: 1.95;
+      color: var(--ink-2);
+    }
+    .about-body p strong {
+      color: var(--ink);
+      font-weight: 700;
+    }
+    .about-body h3 {
+      font-family: "Noto Serif SC", serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--ink);
+      margin: 52px 0 18px;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+    .about-body h3::before {
+      content: '';
+      display: inline-block;
+      width: 28px; height: 2px;
+      background: var(--accent);
+    }
+    .about-body ul {
+      list-style: none;
+      margin-bottom: 32px;
+    }
+    .about-body li {
+      padding: 8px 0 8px 24px;
+      position: relative;
+      font-size: 15.5px;
+      line-height: 1.85;
+      color: var(--ink-2);
+    }
+    .about-body li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 22px;
+      width: 12px; height: 1px;
+      background: var(--accent);
+    }
+
+    /* ============================================
+       核心能力 —— 编辑型条目
+       ============================================ */
+    .caps-list {
+      border-top: 1px solid var(--ink);
+    }
+    .cap-row {
+      display: grid;
+      grid-template-columns: 60px 1.4fr 1.6fr;
+      gap: 40px;
+      align-items: center;
+      padding: 32px 0;
+      border-bottom: 1px solid var(--hair);
+      transition: padding 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.4s ease;
+      cursor: default;
+    }
+    .cap-row:hover {
+      background: var(--surface);
+      padding-left: 20px;
+      padding-right: 20px;
+      border-color: var(--ink);
+    }
+    .cap-row:hover .cap-num { color: var(--accent); }
+    .cap-row:hover .cap-icon { background: var(--accent-soft); color: var(--accent); border-color: var(--accent); }
+    .cap-num {
+      font-family: "Fraunces", serif;
+      font-weight: 300;
+      font-size: 28px;
+      color: var(--ink-3);
+      letter-spacing: -0.02em;
+      transition: color 0.3s ease;
+      font-feature-settings: "tnum";
+    }
+    .cap-icon {
+      width: 44px; height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1.5px solid var(--ink);
+      border-radius: 50%;
+      font-size: 18px;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    .cap-title {
+      font-family: "Noto Serif SC", serif;
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--ink);
+      letter-spacing: 0.02em;
+    }
+    .cap-en {
+      font-family: "Fraunces", serif;
+      font-style: italic;
+      font-size: 11px;
+      color: var(--ink-3);
+      letter-spacing: 0.1em;
+      margin-top: 4px;
+      text-transform: uppercase;
+    }
+    .cap-desc {
+      font-size: 14.5px;
+      color: var(--ink-2);
+      line-height: 1.75;
+    }
+    .diff {
+      margin-bottom: 72px;
+      padding: 48px 56px;
+      background: var(--surface);
+      border: 1px solid var(--hair);
+      border-left: 4px solid var(--accent);
+      position: relative;
+    }
+    .diff::before {
+      content: '“';
+      font-family: "Fraunces", serif;
+      font-size: 72px;
+      line-height: 1;
+      color: var(--accent);
+      opacity: 0.12;
+      position: absolute;
+      top: 18px;
+      right: 36px;
+      pointer-events: none;
+    }
+    .diff-label {
+      font-family: "Inter Tight", sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .diff-text {
+      font-family: "Noto Serif SC", serif;
+      font-size: 17.5px;
+      line-height: 1.95;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+      position: relative;
+      max-width: none;
+      margin-left: 0;
+    }
+    .diff-text p { margin-bottom: 18px; }
+    .diff-text p:last-child { margin-bottom: 0; }
+
+    /* ============================================
+       课程研发设计展示 —— 3 个板块
+       ============================================ */
+    .course-list {
+      display: flex;
+      flex-direction: column;
+      gap: 80px;
+    }
+    .course-item {
+      padding: 48px 0;
+      border-top: 1px solid var(--hair);
+    }
+    .course-item:last-child { border-bottom: 1px solid var(--hair); }
+    .course-item-head {
+      display: flex;
+      align-items: baseline;
+      gap: 24px;
+      margin-bottom: 36px;
+    }
+    .course-item-num {
+      font-family: "Fraunces", serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: 16px;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      font-feature-settings: "tnum";
+    }
+    .course-item-title {
+      font-family: "Noto Serif SC", serif;
+      font-size: 28px;
+      font-weight: 500;
+      color: var(--ink);
+      letter-spacing: 0.02em;
+    }
+    .course-item-en {
+      font-family: "Fraunces", serif;
+      font-style: italic;
+      font-size: 12px;
+      color: var(--ink-3);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-left: auto;
+    }
+
+    /* 创业类：左右分栏 */
+    .course-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+    .course-video-frame {
+      background: var(--ink);
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 30px 60px rgba(15,14,12,0.25);
+      position: sticky;
+      top: 100px;
+    }
+    .course-video-frame video {
+      width: 100%;
+      display: block;
+      max-height: 70vh;
+      background: var(--ink);
+    }
+    .course-video-cap {
+      padding: 14px 20px;
+      background: var(--surface);
+      color: var(--ink-2);
+      font-size: 12px;
+      letter-spacing: 0.05em;
+    }
+    .course-text-block {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .course-block-title {
+      font-family: "Noto Serif SC", serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+    .course-block-sub {
+      font-family: "Inter Tight", sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-top: 16px;
+      margin-bottom: 4px;
+    }
+    .course-block-line {
+      padding: 14px 18px;
+      background: var(--surface);
+      border-left: 3px solid var(--accent);
+      font-size: 14.5px;
+      color: var(--ink);
+      font-weight: 500;
+      line-height: 1.7;
+    }
+    .course-block-list {
+      list-style: none;
+      margin-bottom: 8px;
+    }
+    .course-block-list li {
+      padding: 8px 0 8px 24px;
+      position: relative;
+      font-size: 14.5px;
+      line-height: 1.85;
+      color: var(--ink-2);
+    }
+    .course-block-list li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 22px;
+      width: 14px; height: 1px;
+      background: var(--accent);
+    }
+    .course-block-p {
+      font-size: 14.5px;
+      line-height: 1.9;
+      color: var(--ink-2);
+    }
+
+    /* 兴趣类：图片画廊 + 研发思路弹层 */
+    .chain-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .chain-item {
+      cursor: pointer;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .chain-item:hover { transform: translateY(-4px); }
+    .chain-item:hover .chain-img { border-color: var(--accent); }
+    .chain-img {
+      height: 260px;
+      background: #f0eee9;
+      border: 1px solid var(--hair);
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .chain-img img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .chain-hint {
+      position: absolute;
+      inset: auto 0 0 0;
+      padding: 10px 14px;
+      background: rgba(247,245,240,0.96);
+      border-top: 1px solid var(--hair);
+      font-size: 12px;
+      color: var(--ink-2);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity .3s ease, transform .3s ease;
+    }
+    .chain-item:hover .chain-hint { opacity: 1; transform: none; }
+    .chain-info { margin-top: 18px; }
+    .chain-step {
+      font-family: "Fraunces", serif;
+      font-weight: 300;
+      font-style: italic;
+      font-size: 13px;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .chain-title {
+      font-family: "Noto Serif SC", serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: 0.02em;
+      margin-top: 6px;
+    }
+    /* 课程研发思路弹层 */
+    .course-modal {
+      position: fixed; inset: 0; z-index: 300;
+      background: rgba(15,14,12,0.35);
+      backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+      opacity: 0; pointer-events: none; transition: opacity .25s ease;
+      display: flex; align-items: center; justify-content: center;
+      padding: 40px 20px;
+    }
+    .course-modal.open { opacity: 1; pointer-events: auto; }
+    .course-modal-panel {
+      width: min(900px, 92vw); max-height: 90vh; overflow: auto;
+      background: var(--surface); border: 1px solid var(--ink); border-radius: 4px;
+      display: grid; grid-template-columns: 1.1fr 1fr; gap: 0;
+      box-shadow: 0 30px 80px rgba(15,14,12,0.3);
+      transform: translateY(12px) scale(.98);
+      transition: transform .3s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+    .course-modal.open .course-modal-panel { transform: none; }
+    .course-modal-close {
+      position: absolute; top: 12px; right: 12px;
+      width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+      background: var(--surface); border: 1px solid var(--hair); border-radius: 50%;
+      font-size: 22px; line-height: 1; color: var(--ink-2); cursor: pointer; z-index: 5;
+      transition: color .2s, border-color .2s;
+    }
+    .course-modal-close:hover { color: var(--accent); border-color: var(--accent); }
+    .course-modal-next {
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+      padding: 10px 18px;
+      background: var(--ink);
+      color: var(--bg);
+      border: none;
+      border-radius: 999px;
+      font-family: "Inter Tight", sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      z-index: 6;
+      transition: background .2s, transform .2s;
+    }
+    .course-modal-next:hover { background: var(--accent); transform: translateY(-2px); }
+    .course-modal-img {
+      background: var(--bg); padding: 32px;
+      display: flex; align-items: center; justify-content: center;
+      border-right: 1px solid var(--hair);
+    }
+    .course-modal-img img { max-width: 100%; max-height: 62vh; object-fit: contain; }
+    .course-modal-body { padding: 44px; }
+    .course-modal-body .chain-step { margin-bottom: 8px; }
+    .course-modal-body .chain-title { font-size: 26px; margin-bottom: 28px; }
+    .course-modal-desc-title {
+      font-family: "Noto Sans SC", sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .course-modal-points { list-style: none; }
+    .course-modal-points li {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 12px;
+      padding: 12px 0;
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--ink-2);
+      border-bottom: 1px solid var(--hair);
+    }
+    .course-modal-points li:last-child { border-bottom: none; }
+    .course-modal-points .lbl {
+      font-weight: 600;
+      color: var(--ink);
+      font-size: 12px;
+    }
+
+    /* 课程对比：表格 */
+    .cmp-wrap {
+      border: 1px solid var(--ink);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .cmp-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14.5px;
+    }
+    .cmp-table thead th {
+      padding: 18px 24px;
+      font-family: "Noto Serif SC", serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--bg);
+      letter-spacing: 0.02em;
+      text-align: left;
+    }
+    .cmp-table thead .h-dim { background: var(--ink); width: 22%; }
+    .cmp-table thead .h-startup { background: var(--accent); width: 39%; }
+    .cmp-table thead .h-interest { background: var(--ink); width: 39%; }
+    .cmp-table tbody th,
+    .cmp-table tbody td {
+      padding: 16px 24px;
+      text-align: left;
+      vertical-align: top;
+      border-top: 1px solid var(--hair);
+      color: var(--ink-2);
+      line-height: 1.75;
+    }
+    .cmp-table tbody th {
+      font-weight: 700;
+      color: var(--ink);
+      background: var(--bg);
+      border-right: 1px solid var(--hair);
+    }
+    .cmp-table tbody td {
+      border-right: 1px solid var(--hair);
+    }
+    .cmp-table tbody td:last-child { border-right: none; }
+    .cmp-table tbody tr:hover td,
+    .cmp-table tbody tr:hover th { background: var(--surface); }
+
+    .cmp-summary {
+      margin-top: 32px;
+      padding: 32px 40px;
+      background: var(--surface);
+      border-left: 4px solid var(--accent);
+    }
+    .cmp-summary-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .cmp-summary p {
+      font-family: "Noto Serif SC", serif;
+      font-size: 16px;
+      line-height: 1.85;
+      color: var(--ink);
+    }
+
+    /* ============================================
+       IP 作品 —— 数据对比 + 原件展示
+       ============================================ */
+    .ip-compare-wrap { margin-bottom: 72px; }
+    .ip-compare-figure {
+      margin: 0;
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+    .ip-compare-media {
+      background: var(--surface);
+      border: 1px solid var(--hair);
+      border-radius: 6px;
+      padding: 16px;
+      box-shadow: 0 24px 60px rgba(15,14,12,0.10);
+    }
+    .ip-compare-media img {
+      width: 100%; display: block; border-radius: 4px;
+      border: 1px solid var(--hair);
+    }
+    .ip-compare-figure figcaption {
+      padding: 36px;
+      background: var(--surface);
+      border: 1px solid var(--hair);
+      border-radius: 6px;
+      font-size: 15px;
+      line-height: 1.9;
+      color: var(--ink-2);
+      box-shadow: 0 16px 40px rgba(15,14,12,0.06);
+      position: relative;
+    }
+    .ip-compare-figure figcaption::before {
+      content: '数据洞察';
+      display: block;
+      font-family: "Inter Tight", sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .ip-compare-figure figcaption::after {
+      content: '';
+      position: absolute;
+      top: 36px; right: 36px;
+      width: 36px; height: 36px;
+      border-top: 2px solid var(--accent);
+      border-right: 2px solid var(--accent);
+      opacity: 0.35;
+    }
+    .ip-compare-highlight,
+    .ip-work-highlight {
+      display: inline;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .ip-works-list { display: flex; flex-direction: column; gap: 32px; }
+    .ip-work-card {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 0;
+      background: var(--surface);
+      border: 1px solid var(--hair);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+    }
+    .ip-work-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 24px 50px rgba(15,14,12,0.14);
+    }
+    .ip-work-img {
+      background: #f0eee9;
+      min-height: 320px;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .ip-work-img img {
+      width: 100%; height: 100%; object-fit: contain; display: block;
+      max-height: 420px;
+    }
+    .ip-work-body {
+      padding: 44px;
+      display: flex; flex-direction: column; justify-content: center;
+      border-left: 1px solid var(--hair);
+    }
+    .ip-work-tag {
+      font-family: "Inter Tight", sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .ip-work-title {
+      font-family: "Noto Serif SC", serif;
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 1.45;
+      color: var(--ink);
+      margin-bottom: 20px;
+    }
+    .ip-work-desc {
+      font-size: 15px;
+      line-height: 1.95;
+      color: var(--ink-2);
+      margin-bottom: 24px;
+    }
+    .ip-douyin-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 26px;
+      background: var(--bg);
+      border: 1px solid var(--hair-strong);
+      border-radius: 8px;
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      transition: all .3s cubic-bezier(0.16,1,0.3,1);
+      align-self: flex-start;
+      box-shadow: 0 2px 6px rgba(15,14,12,0.06);
+    }
+    .ip-douyin-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--surface);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(217,53,68,0.12);
+    }
+    .ip-douyin-btn svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    /* ============================================
+       工作旅程 —— 时间线
+       ============================================ */
+    .journey {
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .journey::before {
+      content: '';
+      position: absolute;
+      left: 100px;
+      top: 12px;
+      bottom: 12px;
+      width: 1px;
+      background: var(--ink);
+    }
+    .j-item {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 60px;
+      align-items: start;
+      padding-bottom: 56px;
+      position: relative;
+    }
+    .j-period {
+      font-family: "Fraunces", serif;
+      font-style: italic;
+      font-size: 14px;
+      color: var(--ink);
+      text-align: right;
+      padding-top: 6px;
+      letter-spacing: 0.02em;
+      font-weight: 400;
+    }
+    .j-period .loc {
+      display: block;
+      color: var(--ink-3);
+      font-size: 11px;
+      margin-top: 4px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-style: normal;
+      font-family: "Inter Tight", sans-serif;
+      font-weight: 500;
+    }
+    .j-dot {
+      position: absolute;
+      left: 96px;
+      top: 14px;
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 2px solid var(--accent);
+      z-index: 1;
+    }
+    .j-card { max-width: 720px; }
+    .j-role {
+      font-family: "Noto Serif SC", serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 4px;
+      letter-spacing: 0.02em;
+    }
+    .j-company {
+      font-family: "Fraunces", serif;
+      font-style: italic;
+      font-size: 14px;
+      color: var(--accent);
+      margin-bottom: 16px;
+      letter-spacing: 0.02em;
+    }
+    .j-desc {
+      list-style: none;
+      margin-bottom: 16px;
+    }
+    .j-desc li {
+      padding: 6px 0 6px 24px;
+      position: relative;
+      font-size: 14.5px;
+      line-height: 1.85;
+      color: var(--ink-2);
+    }
+    .j-desc li strong { color: var(--ink); }
+    .j-desc li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 18px;
+      width: 14px; height: 1px;
+      background: var(--accent);
+    }
+    .j-skill {
+      display: inline-block;
+      margin-top: 6px;
+      font-family: "Inter Tight", sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      padding: 5px 12px;
+      border: 1px solid var(--accent);
+    }
+
+    /* ============================================
+       联系方式
+       ============================================ */
+    .contact {
+      text-align: center;
+      padding: 120px 56px;
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      border-top: 1px solid var(--ink);
+    }
+    .contact-kicker {
+      font-family: "Inter Tight", sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 32px;
+    }
+    .contact-big {
+      font-family: "Noto Serif SC", serif;
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 500;
+      line-height: 1.4;
+      color: var(--ink);
+      margin-bottom: 40px;
+      letter-spacing: 0.02em;
+    }
+    .contact-email {
+      display: inline-block;
+      position: relative;
+      font-family: "Inter Tight", "Noto Sans SC", sans-serif;
+      font-style: normal;
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: 0.02em;
+      cursor: default;
+      transition: color 0.3s ease;
+    }
+    .contact-email::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: -8px;
+      width: 100%; height: 3px;
+      background: var(--accent);
+      transform: scaleX(1);
+      transform-origin: center;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .contact-email:hover { color: var(--accent); }
+    .contact-email:hover::after { transform: scaleX(1.12); }
+    .contact-promise {
+      margin-top: 28px;
+      margin-bottom: 24px;
+      font-size: 13px;
+      color: var(--ink-3);
+      letter-spacing: 0.02em;
+    }
+    .contact-promise strong { color: var(--ink); font-weight: 600; }
+    .contact-hr-note {
+      font-size: 15px;
+      color: var(--ink);
+      letter-spacing: 0.02em;
+      line-height: 1.6;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    .contact-hr-note strong { color: var(--accent); font-weight: 600; }
+
+    /* 页脚 */
+    .footer {
+      padding: 40px 56px;
+      border-top: 1px solid var(--hair);
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: var(--ink-3);
+      letter-spacing: 0.05em;
+    }
+    .footer .copy { font-family: "Fraunces", serif; font-style: italic; }
+    .footer .issue { font-family: "Fraunces", serif; font-weight: 400; }
+    .footer .issue .num { color: var(--accent); font-style: normal; }
+
+    .back-to-top {
+      position: fixed;
+      right: 28px;
+      bottom: 28px;
+      z-index: 90;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--ink);
+      color: var(--bg);
+      border: none;
+      border-radius: 50%;
+      font-size: 18px;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(12px);
+      pointer-events: none;
+      transition: opacity .3s ease, transform .3s ease, background .2s ease;
+    }
+    .back-to-top.visible { opacity: 1; transform: none; pointer-events: auto; }
+    .back-to-top:hover { background: var(--accent); }
+    .back-to-top::before {
+      content: attr(data-label);
+      position: absolute;
+      right: calc(100% + 12px);
+      top: 50%;
+      transform: translateY(-50%) translateX(6px);
+      background: var(--ink);
+      color: var(--bg);
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: all .25s ease;
+    }
+    .back-to-top:hover::before {
+      opacity: 1;
+      transform: translateY(-50%) translateX(0);
+    }
+
+    /* === 图片放大查看器 === */
+    .img-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(15,14,12,0.88);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .img-lightbox.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 50%;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s ease;
+      z-index: 101;
+    }
+    .lightbox-close:hover { background: rgba(255,255,255,0.2); transform: rotate(90deg); }
+    .lightbox-close svg { width: 20px; height: 20px; }
+    .lightbox-stage {
+      width: 100vw;
+      height: 100vh;
+      overflow: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 40px;
+      cursor: zoom-in;
+    }
+    .lightbox-stage.zoomed { cursor: zoom-out; }
+    .lightbox-stage img {
+      max-width: 90vw;
+      max-height: 90vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 4px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+      transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), max-width 0.4s ease, max-height 0.4s ease;
+    }
+    .lightbox-stage.zoomed img {
+      max-width: none;
+      max-height: none;
+    }
+    .lightbox-hint {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 8px 16px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 999px;
+      color: rgba(255,255,255,0.8);
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .lightbox-stage.zoomed ~ .lightbox-hint { opacity: 0; }
+    .zoom-cursor { cursor: zoom-in; }
+    .ip-compare-media img,
+    .ip-work-img img { cursor: zoom-in; transition: transform 0.3s ease; }
+    .ip-compare-media:hover img,
+    .ip-work-img:hover img { transform: scale(1.02); }
+
+    /* === 滚动入场 === */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+
+    /* === 细化 v2.1：入场 stagger / 数字计数 / 导航高亮 / 移动菜单 / 搜索 === */
+    .reveal-item { opacity: 0; }
+    .reveal-item.in { animation: rise .8s cubic-bezier(0.16, 1, 0.3, 1) forwards; animation-delay: calc(var(--i, 0) * 60ms); }
+    @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+
+    .section.reveal.in .sec-head { animation: headIn .9s cubic-bezier(0.16, 1, 0.3, 1) both; }
+    @keyframes headIn { from { opacity: 0; transform: translateX(-16px); } to { opacity: 1; transform: none; } }
+
+    .stat-num .count { font-variant-numeric: tabular-nums; }
+
+    /* 顶部导航：当前板块高亮 */
+    .topbar-nav a.active { color: var(--accent); }
+    .topbar-nav a::after {
+      content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 2px;
+      background: var(--accent); transform: scaleX(0); transform-origin: left;
+      transition: transform .3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .topbar-nav a.active::after { transform: scaleX(1); }
+
+    /* 右侧集群 + 移动菜单按钮 */
+    .topbar-right { display: flex; align-items: center; gap: 18px; justify-content: flex-end; }
+    .nav-search {
+      display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px;
+      border: 1px solid var(--hair-strong); border-radius: 999px; background: none;
+      color: var(--ink-2); font-family: "Inter Tight", sans-serif; font-size: 12px;
+      font-weight: 600; letter-spacing: 0.08em; cursor: pointer;
+      transition: border-color .2s ease, color .2s ease;
+    }
+    .nav-search:hover { border-color: var(--accent); color: var(--accent); }
+    .nav-toggle {
+      display: none; flex-direction: column; gap: 5px; width: 36px; height: 36px;
+      padding: 9px; background: none; border: 1px solid var(--hair-strong);
+      border-radius: 6px; cursor: pointer;
+    }
+    .nav-toggle span { display: block; height: 2px; background: var(--ink); border-radius: 2px; transition: transform .3s ease, opacity .3s ease; }
+    .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-nav { display: none; }
+
+    /* 搜索浮层 */
+    .search-overlay {
+      position: fixed; inset: 0; z-index: 200; background: rgba(15,14,12,0.35);
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+      opacity: 0; pointer-events: none; transition: opacity .25s ease;
+      display: flex; justify-content: center; align-items: flex-start; padding-top: 12vh;
+    }
+    .search-overlay.open { opacity: 1; pointer-events: auto; }
+    .search-panel {
+      position: relative;
+      width: min(680px, 92vw); background: var(--surface); border: 1px solid var(--ink);
+      border-radius: 12px; overflow: hidden; box-shadow: 0 40px 100px rgba(15,14,12,0.32);
+      transform: translateY(-12px) scale(.98); transition: transform .3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .search-close {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      cursor: pointer;
+      z-index: 5;
+      padding: 0;
+      outline: none;
+    }
+    .search-close svg { width: 18px; height: 18px; stroke: var(--ink-2); stroke-width: 2; transition: stroke .2s; }
+    .search-close:hover svg, .search-close:focus-visible svg { stroke: var(--accent); }
+    .search-overlay.open .search-panel { transform: none; }
+    .search-input-wrap { display: flex; align-items: center; gap: 12px; padding: 22px 24px; border-bottom: 1px solid var(--hair); }
+    .search-ico { font-size: 18px; opacity: .55; }
+    #searchInput { flex: 1; border: none; outline: none; background: none; font-family: "Inter Tight", sans-serif; font-size: 17px; color: var(--ink); }
+    #searchInput::placeholder { color: var(--ink-4); }
+    .search-results { max-height: 46vh; overflow: auto; padding: 10px; }
+    .search-result { display: grid; grid-template-columns: 68px 1fr; gap: 16px; align-items: center; padding: 14px 16px; border-radius: 8px; cursor: pointer; text-decoration: none; transition: background .15s; }
+    .search-result:hover, .search-result.active { background: var(--accent-soft); }
+    .search-cat { font-family: "Inter Tight", sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); text-align: center; }
+    .search-title { font-family: "Noto Serif SC", serif; font-size: 15px; color: var(--ink); }
+    .search-snippet { font-size: 13px; color: var(--ink-3); margin-top: 4px; line-height: 1.55; }
+    .search-snippet mark { background: var(--accent); color: var(--bg); padding: 0 3px; border-radius: 2px; }
+    .search-empty { padding: 40px; text-align: center; color: var(--ink-3); font-size: 14px; }
+    .search-footer { padding: 14px 20px; border-top: 1px solid var(--hair); background: var(--bg); }
+    .search-footer-label { font-size: 11px; color: var(--ink-3); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px; }
+    .search-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .search-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 12px; border-radius: 999px; border: 1px solid var(--hair);
+      background: var(--surface); color: var(--ink-2); font-size: 13px;
+      cursor: pointer; transition: border-color .2s, color .2s, background .2s;
+    }
+    .search-tag:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+    .search-tag::before { content: "#"; color: var(--accent); opacity: .7; }
+
+    /* === 响应式 === */
+    @media (max-width: 960px) {
+      .topbar { grid-template-columns: 1fr auto; padding: 14px 20px; }
+      .topbar-nav { display: none; }
+      .nav-toggle { display: flex; }
+      .nav-search span { display: none; }
+      .mobile-nav {
+        display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0;
+        background: rgba(247,245,240,0.98); backdrop-filter: blur(20px) saturate(140%);
+        -webkit-backdrop-filter: blur(20px) saturate(140%);
+        border-bottom: 1px solid var(--hair); padding: 4px 20px 14px;
+        z-index: 49; transform: translateY(-8px); opacity: 0; pointer-events: none;
+        transition: opacity .3s ease, transform .3s ease;
+      }
+      .mobile-nav.open { opacity: 1; transform: none; pointer-events: auto; }
+      .mobile-nav a { padding: 14px 4px; font-size: 16px; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--hair); font-family: "Noto Serif SC", serif; }
+      .mobile-nav a.active { color: var(--accent); }
+      .section, .hero { padding-left: 20px; padding-right: 20px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+      .hero-photo { margin: 0 auto; max-width: 280px; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .stat { padding: 32px 20px; }
+      .stat:nth-child(2n) { border-right: none; }
+      .stat:nth-child(n+3) { border-top: 1px solid var(--hair); }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .about-side { position: relative; top: 0; max-width: 280px; margin: 0 auto; }
+      .sec-head { grid-template-columns: 60px 1fr; }
+      .sec-num { font-size: 56px; }
+      .cap-row { grid-template-columns: 50px 1fr 24px; gap: 16px; }
+      .cap-icon { display: none; }
+      .course-split { grid-template-columns: 1fr; }
+      .course-video-frame { position: relative; top: 0; }
+      .chain { grid-template-columns: 1fr; gap: 32px; }
+      .ip-feat { grid-template-columns: 1fr; }
+      .ip-feat-meta { padding-left: 0; padding-top: 0; border-left: none; border-top: 2px solid var(--accent); padding-top: 16px; }
+      .journey::before { left: 50px; }
+      .j-item { grid-template-columns: 50px 1fr; gap: 24px; }
+      .j-dot { left: 46px; }
+      .footer { flex-direction: column; gap: 8px; padding: 32px 20px; text-align: center; }
+    }
+    @media (max-width: 960px) {
+      .chain-gallery { grid-template-columns: 1fr; }
+      .chain-img { height: 220px; }
+      .course-modal-panel { grid-template-columns: 1fr; }
+      .course-modal-img { border-right: none; border-bottom: 1px solid var(--hair); }
+      .ip-work-card { grid-template-columns: 1fr; }
+      .ip-work-img { min-height: 240px; }
+      .ip-work-body { border-left: none; border-top: 1px solid var(--hair); padding: 28px; }
+      .ip-compare-figure { grid-template-columns: 1fr; gap: 28px; }
+      .ip-compare-media { padding: 12px; }
+      .ip-compare-figure figcaption { padding: 28px; }
+      .ip-compare-figure figcaption::after { top: 28px; right: 28px; width: 28px; height: 28px; }
+    }
+  </style>
 </head>
 <body>
-  <!-- 动态背景 -->
-  <div class="bg-orbs">
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
-  </div>
 
-  <!-- 移动端顶部搜索栏（桌面端隐藏） -->
-  <div class="mobile-search-bar" id="mobileSearchBar">
-    <div class="msb-inner">
-      <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-      <input type="text" class="msb-input" id="mobileSiteSearch" placeholder="搜索内容，例如：课程设计" aria-label="搜索网站内容" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="mobileSearchSuggestions" aria-autocomplete="list">
-      <button type="button" class="msb-clear" id="msbClear" aria-label="清空搜索">✕</button>
+  <!-- 顶部条 -->
+  <header class="topbar">
+    <div class="topbar-logo"><span class="zh">陆姝霖</span> <span class="mark"></span> <span style="font-size:13px;color:var(--ink-3);">Personal Portfolio</span></div>
+    <nav class="topbar-nav">
+      <a href="#about">关于我</a>
+      <a href="#caps">核心能力</a>
+      <a href="#course">课程设计</a>
+      <a href="#ip">IP作品</a>
+      <a href="#journey">工作旅程</a>
+      <a href="#contact">联系我</a>
+    </nav>
+    <div class="topbar-right">
+      <button class="nav-search" id="navSearch" aria-label="搜索内容">🔍 <span>搜索</span></button>
+      <div class="topbar-issue">Vol. <span class="num">01</span> / 2026</div>
+      <button class="nav-toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-    <ul class="search-suggestions msb-suggestions" id="mobileSearchSuggestions" role="listbox" hidden></ul>
+    <nav class="mobile-nav" id="mobileNav">
+      <a href="#about">关于我</a>
+      <a href="#caps">核心能力</a>
+      <a href="#course">课程设计</a>
+      <a href="#ip">IP作品</a>
+      <a href="#journey">工作旅程</a>
+      <a href="#contact">联系我</a>
+    </nav>
+  </header>
+
+  <!-- 课程研发思路弹层 -->
+  <div class="course-modal" id="courseModal" aria-hidden="true">
+    <button class="course-modal-close" id="courseModalClose" aria-label="关闭">×</button>
+    <div class="course-modal-panel">
+      <button class="course-modal-next" id="courseModalNext" aria-label="下一张">下一页 →</button>
+      <div class="course-modal-img">
+        <img src="" alt="" id="courseModalImg">
+      </div>
+      <div class="course-modal-body" id="courseModalBody"></div>
+    </div>
   </div>
 
-  <!-- 页面内容 -->
-  <main id="main">
-
-    <!-- 左侧悬浮导航 -->
-    <aside class="side-nav" id="sideNav">
-      <a class="side-nav-item" href="#homeHero" data-target="homeHero">
-        <span class="side-dot"></span>
-        <span class="side-label">首页</span>
-      </a>
-      <a class="side-nav-item" href="#homeAbout" data-target="homeAbout">
-        <span class="side-dot"></span>
-        <span class="side-label">关于我</span>
-      </a>
-      <a class="side-nav-item" href="#homeCapabilities" data-target="homeCapabilities">
-        <span class="side-dot"></span>
-        <span class="side-label">核心能力</span>
-      </a>
-      <a class="side-nav-item" href="#homeCourse" data-target="homeCourse">
-        <span class="side-dot"></span>
-        <span class="side-label">课程设计</span>
-      </a>
-      <a class="side-nav-item" href="#homeIpShowcase" data-target="homeIpShowcase">
-        <span class="side-dot"></span>
-        <span class="side-label">IP作品</span>
-      </a>
-      <a class="side-nav-item" href="#homeJourney" data-target="homeJourney">
-        <span class="side-dot"></span>
-        <span class="side-label">工作旅程</span>
-      </a>
-      <a class="side-nav-item" href="#homeContact" data-target="homeContact">
-        <span class="side-dot"></span>
-        <span class="side-label">联系我</span>
-      </a>
-    </aside>
-
-    <!-- 首页 -->
-    <section class="page page-home active" id="home" data-page="home">
-      <div class="hero" id="homeHero">
-        <div class="hero-layout">
-          <div class="hero-content">
-            <h1 class="hero-title">
-              <span class="title-line" id="titleName">陆姝霖</span>
-              <span class="title-subtitle" id="titleRole">知识产品架构师 · 转化链路设计者</span>
-            </h1>
-            <p class="hero-desc" id="titleSubtitle">五年的知识付费与内容转化经验，专注用户教育场景。把复杂产品拆解成零基础用户能听懂的内容结构，并把它变成可复制的SOP</p>
-            <div class="hero-search">
-              <div class="search-box">
-                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-                <input type="text" class="search-input" id="siteSearch" placeholder="搜索你想知道关于我的内容，例如：课程设计" aria-label="搜索网站内容" autocomplete="off" role="combobox" aria-expanded="false" aria-controls="searchSuggestions" aria-autocomplete="list">
-              </div>
-              <ul class="search-suggestions" id="searchSuggestions" role="listbox" hidden></ul>
-            </div>
-          </div>
-          <div class="hero-avatar">
-            <div class="avatar-ring">
-              <img loading="eager" src="assets/photos/avatar.webp" alt="陆姝霖">
-            </div>
-          </div>
+  <!-- 搜索浮层 -->
+  <div class="search-overlay" id="searchOverlay" aria-hidden="true">
+    <div class="search-panel">
+      <button class="search-close" id="searchClose" aria-label="关闭搜索">
+        <svg viewBox="0 0 18 18" fill="none" aria-hidden="true"><line x1="2" y1="2" x2="16" y2="16"/><line x1="16" y1="2" x2="2" y2="16"/></svg>
+      </button>
+      <div class="search-input-wrap">
+        <span class="search-ico">🔍</span>
+        <input type="text" id="searchInput" placeholder="搜索课程、能力、IP、工作经历…" autocomplete="off">
+      </div>
+      <div class="search-results" id="searchResults"></div>
+      <div class="search-footer">
+        <div class="search-footer-label">热门搜索</div>
+        <div class="search-tags" id="searchTags">
+          <button class="search-tag" data-q="高客单价转化">高客单价转化</button>
+          <button class="search-tag" data-q="三差模型">三差模型</button>
+          <button class="search-tag" data-q="抖音视频数据">抖音视频数据</button>
+          <button class="search-tag" data-q="课程研发">课程研发</button>
+          <button class="search-tag" data-q="关于我">关于我</button>
         </div>
+      </div>
+    </div>
+  </div>
 
-        <div class="hero-stats">
-          <div class="stats-grid" id="heroStats"></div>
+  <!-- HERO -->
+  <section class="hero reveal">
+    <div class="hero-meta-row">
+      <div>Personal Portfolio <span class="dot"></span> 2026 Edition</div>
+      <div>Knowledge Product Architect</div>
+    </div>
+
+    <div class="hero-grid">
+      <div class="hero-text">
+        <div class="hero-eyebrow">独立课程开发者 · 转化策略师</div>
+        <h1 class="hero-name">陆姝霖<span class="mark-dot"></span></h1>
+        <div class="hero-role" id="titleRole">知识产品架构师 <em>·</em> 转化链路设计者</div>
+        <p class="hero-desc" id="titleSubtitle">五年的知识付费与内容转化经验，专注用户教育场景。把复杂产品拆解成零基础用户能听懂的内容结构，并把它变成可复制的SOP</p>
+        <div class="hero-cta-row">
+          <a href="#contact" class="cta-primary">
+            联系我
+            <svg class="cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+          <a href="#journey" class="cta-secondary">
+            查看工作旅程
+            <svg class="cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
         </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-photo-num">No. 01</div>
+        <div class="hero-photo">
+          <img loading="eager" src="assets/photos/avatar.webp" alt="陆姝霖">
+        </div>
+        <div class="hero-photo-meta">陆姝霖 / Lu Shulin<br>Knowledge Product Architect</div>
+      </div>
+    </div>
+  </section>
 
-        <div class="hero-scroll">
-          <span>向下滚动探索更多</span>
-          <div class="scroll-arrow"></div>
+  <!-- 业绩数据 -->
+  <div class="stats reveal" id="heroStats"></div>
+
+  <!-- 关于我 -->
+  <section class="section reveal" id="about">
+    <div class="sec-head">
+      <div class="sec-num">01<span class="slash">/</span></div>
+      <div>
+        <h2 class="sec-title-zh">关于我</h2>
+        <div class="sec-title-en">A note on who I am and what I do</div>
+      </div>
+      <div class="sec-tag">About</div>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-side">
+        <div class="about-side-photo">
+          <img src="个人照片/生活照1.webp" alt="陆姝霖生活照" id="aboutLongPhotoHome">
+        </div>
+        <div class="about-side-caption">
+          Photo <span class="accent">—</span> Changsha, 2026<br>
+          Living between content &amp; craft
         </div>
       </div>
 
-      <!-- 关于我（首页版） -->
-      <div class="section about-long-section" id="homeAbout">
-        <div class="section-header">
-          <span class="section-tag">ABOUT ME</span>
-          <h2 class="section-title">关于我</h2>
-          <p class="section-desc" id="aboutLongSubtitleHome"></p>
-        </div>
-        <div class="about-long-photo reveal">
-          <img src="" alt="陆姝霖生活照" id="aboutLongPhotoHome">
-        </div>
-        <div class="about-long-card reveal" id="aboutLongCardHome"></div>
+      <div class="about-body" id="aboutLongCardHome"></div>
+    </div>
+  </section>
+
+  <!-- 核心能力 -->
+  <section class="section reveal" id="caps">
+    <div class="sec-head">
+      <div class="sec-num">02<span class="slash">/</span></div>
+      <div>
+        <h2 class="sec-title-zh">核心能力</h2>
+        <div class="sec-title-en">Six disciplines, refined over five years</div>
       </div>
+      <div class="sec-tag">Capabilities</div>
+    </div>
 
-      <!-- 核心能力板块 -->
-      <div class="section capabilities-section" id="homeCapabilities">
-        <div class="section-header">
-          <span class="section-tag">CORE ABILITIES</span>
-          <h2 class="section-title">我的核心能力</h2>
-          <p class="section-desc">五年来围绕用户教育这件事，沉淀下来的可复用能力</p>
-        </div>
-        <div class="capability-note reveal" id="capabilityNote"></div>
-        <div class="capabilities-grid" id="capabilitiesGrid"></div>
+    <div id="capabilityDiff"></div>
+    <div class="caps-list" id="capabilitiesGrid"></div>
+  </section>
+
+  <!-- 课程研发设计展示 -->
+  <section class="section reveal" id="course">
+    <div class="sec-head">
+      <div class="sec-num">03<span class="slash">/</span></div>
+      <div>
+        <h2 class="sec-title-zh">课程研发设计展示</h2>
+        <div class="sec-title-en">From "problem-first" to "solution-bound" frameworks</div>
       </div>
+      <div class="sec-tag">Course Design</div>
+    </div>
 
-      <!-- 课程研发设计展示 -->
-      <div class="section course-showcase-section" id="homeCourse">
-        <div class="section-header">
-          <span class="section-tag">COURSE DESIGN</span>
-          <h2 class="section-title">课程研发设计展示</h2>
-          <p class="section-desc">从「问题前置」到「解决方案」的课程结构设计拆解</p>
-        </div>
-        <div class="course-parts" id="courseParts"></div>
+    <div class="course-list" id="courseParts"></div>
+  </section>
+
+  <!-- IP 作品 -->
+  <section class="section reveal" id="ip">
+    <div class="sec-head">
+      <div class="sec-num">04<span class="slash">/</span></div>
+      <div>
+        <h2 class="sec-title-zh">IP 作品</h2>
+        <div class="sec-title-en">Real metrics, original content, no filters</div>
       </div>
+      <div class="sec-tag">IP Works</div>
+    </div>
 
-      <!-- IP 作品展示 -->
-      <div class="section ip-showcase-section" id="homeIpShowcase">
-        <div class="section-header">
-          <span class="section-tag">IP WORKS</span>
-          <h2 class="section-title">IP作品展示</h2>
-          <p class="section-desc">真实数据对比 + 原创内容原件</p>
+    <div class="ip-compare-wrap">
+      <figure class="ip-compare-figure">
+        <div class="ip-compare-media">
+          <img src="" alt="抖音视频数据对比" id="ipCompareImg">
         </div>
+        <figcaption id="ipCompareCaption"></figcaption>
+      </figure>
+    </div>
 
-        <div class="ip-compare reveal">
-          <img src="" alt="抖音视频数据对比" id="ipCompareImg" class="ip-compare-img">
-          <p class="ip-compare-caption" id="ipCompareCaption"></p>
-        </div>
+    <div class="ip-works-list" id="ipWorksList"></div>
+  </section>
 
-        <div class="ip-videos" id="ipVideos"></div>
+  <!-- 工作旅程 -->
+  <section class="section reveal" id="journey">
+    <div class="sec-head">
+      <div class="sec-num">05<span class="slash">/</span></div>
+      <div>
+        <h2 class="sec-title-zh">工作旅程</h2>
+        <div class="sec-title-en">From the stage to the system, five years in motion</div>
       </div>
+      <div class="sec-tag">Journey</div>
+    </div>
 
-      <!-- 工作旅程时间线 -->
-      <div class="section journey-section" id="homeJourney">
-        <div class="section-header">
-          <span class="section-tag">OUR JOURNEY</span>
-          <h2 class="section-title">我的工作旅程</h2>
-          <p class="section-desc">从讲师到内容操盘手，每一段经历都在沉淀我对「用户教育」的理解</p>
-        </div>
-        <div class="journey-timeline" id="journeyTimeline"></div>
-      </div>
+    <div class="journey" id="journeyTimeline"></div>
+  </section>
 
-      <!-- 联系方式板块 -->
-      <div class="section contact-section" id="homeContact">
-        <p class="contact-kicker">保持联系</p>
-        <p class="contact-invite">面试邀约或合作交流，欢迎随时联系</p>
-        <div class="contact-actions">
-          <span class="contact-btn contact-btn--static" aria-label="我的邮箱">✉ 我的邮箱</span>
-        </div>
-        <p class="contact-email">lushulin98@qq.com</p>
-        <p class="contact-promise">通常在 <strong>24 小时内</strong>回复</p>
-      </div>
-    </section>
-
-
-  </main>
+  <!-- 联系方式 -->
+  <section class="contact reveal" id="contact">
+    <div class="contact-kicker">Get in touch</div>
+    <h2 class="contact-big">合作交流<br>欢迎随时联系</h2>
+    <span class="contact-email">lushulin98@qq.com</span>
+    <p class="contact-promise">通常在 <strong>24 小时内</strong> 回复</p>
+    <p class="contact-hr-note">面试邀约请直接在 <strong>招聘 APP</strong> 上私信联系，回复更快。</p>
+  </section>
 
   <!-- 页脚 -->
   <footer class="footer">
-    <div class="footer-content">
-      <p class="footer-text">© 2026 陆姝霖 · 用内容连接用户教育</p>
-      <div class="footer-links">
-        <a href="#" id="backToTop">回到顶部 ↑</a>
-      </div>
-    </div>
+    <div class="copy">© 2026 陆姝霖 · 用内容连接用户教育</div>
+    <div class="issue">Vol. <span class="num">01</span> / Personal Portfolio</div>
   </footer>
 
-  <!-- 图片放大灯箱 -->
-  <div class="lightbox" id="lightbox">
-    <span class="lightbox-close" id="lightboxClose">&times;</span>
-    <img id="lightboxImg" src="" alt="">
-  </div>
+  <button class="back-to-top" id="backToTop" aria-label="回到顶部" data-label="返回顶部">↑</button>
 
-  <!-- 缩放浮层（逻辑图等可缩放图片） -->
-  <div class="zoom-modal" id="zoomModal" aria-hidden="true">
-    <span class="zoom-close" id="zoomClose">&times;</span>
-    <div class="zoom-stage" id="zoomStage">
-      <div class="zoom-img-wrap">
-        <img id="zoomImg" src="" alt="">
-      </div>
-      <div class="zoom-panel" id="zoomPanel" hidden>
-        <!-- 课程研发思路说明（待补充） -->
-      </div>
+  <!-- 图片放大查看器 -->
+  <div class="img-lightbox" id="imgLightbox" aria-hidden="true">
+    <button class="lightbox-close" id="lightboxClose" aria-label="关闭">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
+    <div class="lightbox-stage" id="lightboxStage">
+      <img src="" alt="" id="lightboxImg">
     </div>
-    <div class="zoom-controls">
-      <button type="button" class="zoom-btn" id="zoomOut" aria-label="缩小">−</button>
-      <span class="zoom-level" id="zoomLevel">100%</span>
-      <button type="button" class="zoom-btn" id="zoomIn" aria-label="放大">+</button>
-      <button type="button" class="zoom-btn zoom-reset" id="zoomReset">重置</button>
-      <button type="button" class="zoom-btn zoom-next" id="zoomNext" aria-label="下一张" hidden>下一张 →</button>
-    </div>
-    <p class="zoom-tip" id="zoomTip">滚轮 / 按钮可放大至 200% · 拖拽或方向键上下左右移动 · 点击图片退出放大</p>
+    <div class="lightbox-hint">点击图片放大 · 再次点击缩小</div>
   </div>
 
   <script src="data.js"></script>
-  <script src="script.js"></script>
+  <script>
+    /* === 渲染：复用 SITE_CONFIG === */
+    const $ = s => document.querySelector(s);
+    const $$ = s => document.querySelectorAll(s);
+
+    // Hero stats
+    if (SITE_CONFIG.heroStats) {
+      $('#heroStats').innerHTML = SITE_CONFIG.heroStats.map((s, i) => `
+        <div class="stat">
+          <div class="stat-num"><span class="count" data-target="${parseInt(s.number, 10) || 0}">0</span><span class="u">${s.suffix}</span></div>
+          <div class="stat-label">${s.label}</div>
+          <div class="stat-en">No. ${String(i+1).padStart(2,'0')} / Track Record</div>
+        </div>
+      `).join('');
+    }
+
+    // 关于我
+    const renderBlock = b => {
+      if (b.type === 'p') return `<p>${b.html}</p>`;
+      if (b.type === 'h3') return `<h3>${b.html}</h3>`;
+      if (b.type === 'ul') return `<ul>${b.items.map(i => `<li>${i}</li>`).join('')}</ul>`;
+      return '';
+    };
+    const aboutData = SITE_CONFIG.aboutLong;
+    $('#aboutLongCardHome').innerHTML = `
+      <div class="about-quote">${aboutData.subtitle}</div>
+      ${aboutData.blocks.map(renderBlock).join('')}
+    `;
+    if (aboutData.photo) $('#aboutLongPhotoHome').src = aboutData.photo;
+
+    // 核心能力
+    const capEN = {
+      '高客单价转化': 'High-ticket Conversion',
+      '冷启动 SOP 设计': 'Cold-start SOP',
+      '课程研发': 'Course Design',
+      '团队复制': 'Team Scaling',
+      'ROI 优化': 'ROI Optimization',
+      '内容文案': 'Content & Copywriting'
+    };
+    $('#capabilitiesGrid').innerHTML = SITE_CONFIG.coreCapabilities.map((c, i) => `
+      <div class="cap-row reveal-item" style="--i:${i}">
+        <div class="cap-num">${String(i+1).padStart(2,'0')}</div>
+        <div class="cap-icon">${c.icon}</div>
+        <div>
+          <div class="cap-title">${c.title}</div>
+          <div class="cap-en">${capEN[c.title] || ''}</div>
+          <div class="cap-desc" style="margin-top:10px;">${c.desc}</div>
+        </div>
+      </div>
+    `).join('');
+
+    const diff = SITE_CONFIG.capabilityDiff;
+    if (diff) {
+      const diffParas = diff.text.split('<br><br>').map(p => `<p>${p.replace(/<br>/g, '')}</p>`).join('');
+      $('#capabilityDiff').innerHTML = `
+        <div class="diff reveal-item">
+          <div class="diff-label">${diff.label}</div>
+          <div class="diff-text">${diffParas}</div>
+        </div>
+      `;
+    }
+
+    // 课程研发设计展示
+    const courseLabels = {
+      startup: 'A. 创业类课程 · Startup Course',
+      interest: 'B. 兴趣类课程 · Interest Course',
+      compare: 'C. 课程设计对比 · Comparative Analysis'
+    };
+    const renderCoursePart = (part, idx) => {
+      const courseEN = { startup: 'Startup · 三差模型', interest: 'Interest · 全链路研发', compare: 'Comparative' };
+      let body = '';
+      if (part.video) {
+        // 创业类：左右分栏（视频 + 文字）
+        const blocks = part.blocks.map(b => {
+          if (b.type === 'title') return `<div class="course-block-title">${b.text}</div>`;
+          if (b.type === 'subtitle') return `<div class="course-block-sub">${b.text}</div>`;
+          if (b.type === 'line') return `<div class="course-block-line">${b.text}</div>`;
+          if (b.type === 'list') return `<ul class="course-block-list">${b.items.map(i => `<li>${i}</li>`).join('')}</ul>`;
+          if (b.type === 'p') return `<p class="course-block-p">${b.text}</p>`;
+          return '';
+        }).join('');
+        body = `
+          <div class="course-split">
+            <div class="course-video-frame">
+              <video controls preload="metadata" poster="${part.poster || ''}">
+                <source src="${part.video}" type="video/mp4">
+              </video>
+              <div class="course-video-cap">${part.videoTitle || ''}</div>
+            </div>
+            <div class="course-text-block">${blocks}</div>
+          </div>
+        `;
+      } else if (part.chain && part.chain.length) {
+        // 兴趣类：图片画廊 + 研发思路弹层
+        body = `
+          <div class="chain-gallery">
+            ${part.chain.map((c, i) => `
+              <div class="chain-item reveal-item" style="--i:${i}" data-chain-idx="${i}">
+                <div class="chain-img">
+                  <img loading="lazy" src="${c.img}" alt="${c.title}">
+                  <div class="chain-hint">🔍 点击查看课程研发思路</div>
+                </div>
+                <div class="chain-info">
+                  <div class="chain-step">Step ${String(i+1).padStart(2,'0')}</div>
+                  <div class="chain-title">${c.title}</div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      } else if (part.comparison) {
+        // 课程设计对比：表格
+        const rows = part.comparison.map(r => `
+          <tr>
+            <th>${r.dim}</th>
+            <td>${r.startup}</td>
+            <td>${r.interest}</td>
+          </tr>
+        `).join('');
+        body = `
+          <div class="cmp-wrap">
+            <table class="cmp-table">
+              <thead>
+                <tr>
+                  <th class="h-dim">维度</th>
+                  <th class="h-startup">创业类课程</th>
+                  <th class="h-interest">兴趣类课程</th>
+                </tr>
+              </thead>
+              <tbody>${rows}</tbody>
+            </table>
+          </div>
+          ${part.summary ? `<div class="cmp-summary">
+            <div class="cmp-summary-tag">— 底层逻辑</div>
+            <p>${part.summary}</p>
+          </div>` : ''}
+        `;
+      }
+      return `
+        <div class="course-item reveal-item" style="--i:${idx}">
+          <div class="course-item-head">
+            <span class="course-item-num">${String(idx+1).padStart(2,'0')}</span>
+            <h3 class="course-item-title">${part.label}</h3>
+            <span class="course-item-en">${courseEN[part.key] || ''}</span>
+          </div>
+          ${body}
+        </div>
+      `;
+    };
+    $('#courseParts').innerHTML = SITE_CONFIG.courseShowcase.parts.map(renderCoursePart).join('');
+
+    // IP 作品
+    if (SITE_CONFIG.ipShowcase) {
+      const ips = SITE_CONFIG.ipShowcase;
+      if (ips.comparisonImage) $('#ipCompareImg').src = ips.comparisonImage;
+      $('#ipCompareCaption').innerHTML = (ips.compareCaption || '').replace(/(90%以上)/, '<span class="ip-compare-highlight">$1</span>');
+      if (ips.videos && ips.videos.length) {
+        $('#ipWorksList').innerHTML = ips.videos.map((v, i) => `
+          <div class="ip-work-card reveal-item" style="--i:${i}">
+            <div class="ip-work-img">
+              <img loading="lazy" src="${v.file}" alt="${v.title}">
+            </div>
+            <div class="ip-work-body">
+              <div class="ip-work-tag">Original Content</div>
+              <h3 class="ip-work-title">${v.title}</h3>
+              <p class="ip-work-desc">${v.desc.replace(/(\d+[Ww万]?以上|\d+\+|【[^【】]+】)/g, '<span class="ip-work-highlight">$1</span>')}</p>
+              ${v.douyinLink ? `<a href="${v.douyinLink}" target="_blank" rel="noopener" class="ip-douyin-btn"><svg class="douyin-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z"/></svg>在抖音中查看</a>` : ''}
+            </div>
+          </div>
+        `).join('');
+      }
+    }
+
+    // 工作旅程
+    $('#journeyTimeline').innerHTML = SITE_CONFIG.experiences.map((e, i) => `
+      <div class="j-item reveal-item" style="--i:${i}">
+        <div class="j-period">${e.period}<span class="loc">${e.location}</span></div>
+        <div class="j-dot"></div>
+        <div class="j-card">
+          <h3 class="j-role">${e.role}</h3>
+          <div class="j-company">${e.company}</div>
+          <ul class="j-desc">
+            ${e.highlights.map(h => `<li>${h}</li>`).join('')}
+          </ul>
+          <span class="j-skill">${e.coreSkill}</span>
+        </div>
+      </div>
+    `).join('');
+
+
+    // 课程研发思路弹层
+    const courseModal = $('#courseModal'), courseModalImg = $('#courseModalImg'), courseModalBody = $('#courseModalBody'), courseModalClose = $('#courseModalClose'), courseModalNext = $('#courseModalNext');
+    const interestPart = SITE_CONFIG.courseShowcase.parts.find(p => p.chain);
+    let currentChainIdx = 0;
+    function renderCourseModal(idx) {
+      const c = interestPart && interestPart.chain[idx];
+      if (!c) return;
+      currentChainIdx = idx;
+      courseModalImg.src = c.img;
+      courseModalImg.alt = c.title;
+      courseModalBody.innerHTML = `
+        <div class="chain-step">Step ${String(idx+1).padStart(2,'0')}</div>
+        <h3 class="chain-title">${c.title}</h3>
+        ${c.desc ? `<div class="course-modal-desc-title">${c.desc.title}</div>
+        <ul class="course-modal-points">${c.desc.points.map(p => `<li><span class="lbl">${p[0]}</span><span>${p[1]}</span></li>`).join('')}</ul>` : ''}
+      `;
+    }
+    function openCourseModal(idx) {
+      renderCourseModal(idx);
+      courseModal.classList.add('open');
+      courseModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeCourseModal() {
+      courseModal.classList.remove('open');
+      courseModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+    function nextCourseModal() {
+      if (!interestPart || !interestPart.chain.length) return;
+      const next = (currentChainIdx + 1) % interestPart.chain.length;
+      renderCourseModal(next);
+    }
+    if (interestPart) {
+      $$('.chain-item').forEach((item, idx) => {
+        item.addEventListener('click', () => openCourseModal(idx));
+      });
+    }
+    if (courseModalNext) courseModalNext.addEventListener('click', nextCourseModal);
+    courseModalClose.addEventListener('click', closeCourseModal);
+    courseModal.addEventListener('click', e => { if (e.target === courseModal) closeCourseModal(); });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && courseModal.classList.contains('open')) closeCourseModal();
+      if (e.key === 'ArrowRight' && courseModal.classList.contains('open')) nextCourseModal();
+    });
+
+    // 滚动入场（含 stagger 子项 + 数字计数）
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const t = e.target;
+        t.classList.add('in');
+        if (t.classList.contains('stats')) {
+          t.querySelectorAll('.count').forEach(runCount);
+        }
+        io.unobserve(t);
+      });
+    }, { threshold: 0.12 });
+    $$('.reveal, .reveal-item').forEach(el => io.observe(el));
+
+    function runCount(el) {
+      const target = parseInt(el.dataset.target, 10) || 0;
+      const dur = 1500, start = performance.now();
+      (function tick(now) {
+        const p = Math.min((now - start) / dur, 1);
+        const eased = 1 - Math.pow(1 - p, 4);
+        el.textContent = Math.round(eased * target);
+        if (p < 1) requestAnimationFrame(tick);
+        else el.textContent = target;
+      })(performance.now());
+    }
+
+    // 顶部导航：当前板块高亮（scroll-spy）
+    const navLinks = Array.from($$('.topbar-nav a, .mobile-nav a'));
+    const spySections = navLinks
+      .map(a => document.querySelector(a.getAttribute('href')))
+      .filter(Boolean);
+    const spy = new IntersectionObserver((entries) => {
+      entries.forEach(en => {
+        if (en.isIntersecting) {
+          const id = '#' + en.target.id;
+          navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === id));
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+    spySections.forEach(s => spy.observe(s));
+
+    // 移动端菜单
+    const navToggle = $('#navToggle');
+    const mobileNav = $('#mobileNav');
+    if (navToggle && mobileNav) {
+      navToggle.addEventListener('click', () => {
+        const open = mobileNav.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', String(open));
+      });
+      mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+        mobileNav.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      }));
+    }
+
+    // 搜索索引：关键词 → 板块ID，参考本地原站做法，确保“抖音视频数据”等热门词可命中
+    function gatherText(obj) {
+      if (!obj) return '';
+      if (typeof obj === 'string') return obj;
+      if (Array.isArray(obj)) return obj.map(gatherText).join(' ');
+      return Object.values(obj).map(gatherText).join(' ');
+    }
+    const SECTION_INDEX = [
+      { id: 'homeHero', label: '首页', target: '#hero', keys: ['首页','主页','开头','顶部','介绍','简介','首屏','陆姝霖','知识产品架构师','转化链路','五年','知识付费','内容转化','253W','18%','5年','5000+'] },
+      { id: 'homeAbout', label: '关于我', target: '#about', keys: ['关于我','关于','个人','简介','我是谁','背景','个人信息','生活照','教育经历','工作背景','线上摄影','售前讲师','课程研发','内容表达','独立设计','中老年','信任','说服','转化率'] },
+      { id: 'homeCapabilities', label: '我的核心能力', target: '#caps', keys: ['核心能力','能力','技能','擅长','我能做什么','实力','本领','课程研发','课件制作','售前转化','内容创作','抖音','IP打造','用户教育','知识变现','三差模型','用户理解','持续迭代','商业闭环','选题','文案','口播','直播','切片','引流','销转','训练营','VIP','小课','摄影入门','约拍','全链路','创业课','摄影课','认知冲突','付款','学会','不同','高客单价转化','冷启动','团队复制','ROI优化'] },
+      { id: 'homeCourse', label: '课程研发设计展示', target: '#course', keys: ['课程设计','课程研发','课程','课件','教学','课程结构','公开课','讲课','培训','内容结构','知识产品','TK公开课','三差模型','直播切片','创业类','兴趣类','课程对比','公域引流','私域销转','VIP小课','口播视频录制','摄影公开课','摄影入门训练营','约拍小灶','全链路课程研发','打开课件','翻书','逻辑图','课程逻辑','研发思路'] },
+      { id: 'homeIpShowcase', label: 'IP作品展示', target: '#ip', keys: ['ip作品','ip','作品','抖音','短视频','数据','对比','案例','成绩','爆款','原创','口播','长视频','播放量','点赞','收藏','50W','7000','500','精准流量','矩阵账号','收藏点赞比','90%','渔子教育','独立策划','剪辑','分发','运营团队','摄影入门教学','数据最高','抖音视频数据'] },
+      { id: 'homeJourney', label: '我的工作旅程', target: '#journey', keys: ['工作旅程','旅程','经历','履历','简历','职业发展','时间线','故事','成长','工作','峰行跨境','长沙','跨行业','快速学习','矩阵账号','前司','渔子教育'] },
+      { id: 'homeContact', label: '联系方式', target: '#contact', keys: ['联系','联系方式','微信','邮箱','加我','合作','联系我','沟通','商务','扫码','添加','lushulin98@qq.com'] }
+    ];
+    const SEARCH_INDEX = SECTION_INDEX.map(s => ({ ...s, type: '板块', title: s.label, snippet: s.keys.join(' / '), allText: (s.label + ' ' + s.keys.join(' ')).toLowerCase() }));
+    // 追加内容级条目
+    SITE_CONFIG.coreCapabilities.forEach(c => SEARCH_INDEX.push({ type: '能力', title: c.title, snippet: c.desc, target: '#caps', allText: (c.title + ' ' + c.desc).toLowerCase() }));
+    SITE_CONFIG.courseShowcase.parts.forEach(p => {
+      const txt = [p.label, p.videoTitle, gatherText(p.blocks)].join(' ');
+      SEARCH_INDEX.push({ type: '课程', title: p.label, snippet: txt.slice(0, 200), target: '#course', allText: txt.toLowerCase() });
+    });
+    if (SITE_CONFIG.ipShowcase) {
+      const ips = SITE_CONFIG.ipShowcase;
+      const ipText = [ips.compareCaption, gatherText(ips.videos)].join(' ');
+      SEARCH_INDEX.push({ type: 'IP', title: '抖音视频数据', snippet: ips.compareCaption || '', target: '#ip', allText: ipText.toLowerCase() });
+      (ips.videos || []).forEach(v => SEARCH_INDEX.push({ type: 'IP', title: v.title, snippet: v.desc, target: '#ip', allText: (v.title + ' ' + v.desc).toLowerCase() }));
+    }
+    SITE_CONFIG.experiences.forEach(e => SEARCH_INDEX.push({ type: '经历', title: e.role + ' · ' + e.company, snippet: e.highlights.join(' '), target: '#journey', allText: (e.role + ' ' + e.company + ' ' + e.highlights.join(' ')).toLowerCase() }));
+    const aboutBlk = SITE_CONFIG.aboutLong;
+    const aboutText = [aboutBlk.subtitle, gatherText(aboutBlk.blocks)].join(' ');
+    SEARCH_INDEX.push({ type: '关于', title: '关于我', snippet: aboutText.slice(0, 200), target: '#about', allText: aboutText.toLowerCase() });
+
+    function scoreHit(item, query) {
+      const q = query.toLowerCase();
+      const title = (item.title || '').toLowerCase();
+      const snippet = (item.snippet || '').toLowerCase();
+      let score = 0;
+      if (title === q) score = 100;
+      else if (title.includes(q)) score = Math.max(score, 80);
+      else if (q.includes(title) && title.length > 1) score = Math.max(score, 60);
+      if (item.keys) {
+        item.keys.forEach(k => {
+          const key = k.toLowerCase();
+          if (key === q) score = Math.max(score, 75);
+          else if (key.includes(q)) score = Math.max(score, 55);
+          else if (q.includes(key) && key.length > 1) score = Math.max(score, 35);
+        });
+      }
+      if (snippet.includes(q)) score = Math.max(score, 30);
+      if (item.allText && item.allText.includes(q)) score = Math.max(score, 20);
+      return score;
+    }
+
+    const overlay = $('#searchOverlay'), sInput = $('#searchInput'), sResults = $('#searchResults'), sTags = $('#searchTags');
+    let activeIdx = -1, curList = [];
+    const HOT_SEARCHES = [
+      { q: '高客单价转化', label: '高客单价转化', type: '能力' },
+      { q: '三差模型', label: '三差模型', type: '课程' },
+      { q: '抖音视频数据', label: '抖音视频数据', type: 'IP' },
+      { q: '课程研发', label: '课程研发', type: '课程' },
+      { q: '关于我', label: '关于我', type: '关于' }
+    ];
+    function esc(s) { return s.replace(/[&<>]/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[m])); }
+    function openSearch() {
+      overlay.classList.add('open'); overlay.setAttribute('aria-hidden', 'false');
+      sInput.value = ''; renderResults(''); sInput.focus();
+    }
+    function closeSearch() { overlay.classList.remove('open'); overlay.setAttribute('aria-hidden', 'true'); }
+    function renderResults(q) {
+      q = q.trim();
+      activeIdx = -1;
+      if (!q) {
+        // 空输入时展示热门搜索对应的内容入口
+        const featured = ['高客单价转化','三差模型','抖音视频数据','课程研发','关于我'];
+        curList = featured.map(keyword => {
+          const hits = SEARCH_INDEX.map(it => ({ it, score: scoreHit(it, keyword) })).filter(x => x.score > 0).sort((a, b) => b.score - a.score);
+          const best = hits[0];
+          return best ? { ...best.it, _keyword: keyword } : null;
+        }).filter(Boolean);
+      } else {
+        const hits = SEARCH_INDEX.map(it => ({ it, score: scoreHit(it, q) })).filter(x => x.score > 0).sort((a, b) => b.score - a.score);
+        curList = hits.map(h => h.it);
+      }
+      if (!curList.length) { sResults.innerHTML = '<div class="search-empty">没有匹配「' + esc(q) + '」的内容</div>'; return; }
+      const safeQ = q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const re = q ? new RegExp('(' + safeQ + ')', 'ig') : null;
+      const hl = (t, kw) => {
+        if (!t) return '';
+        let s = esc(t);
+        if (re) s = s.replace(re, m => '<mark>' + m + '</mark>');
+        else if (kw) {
+          const kwRe = new RegExp('(' + kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'ig');
+          s = s.replace(kwRe, m => '<mark>' + m + '</mark>');
+        }
+        return s;
+      };
+      sResults.innerHTML = curList.map((it, i) => `
+        <a class="search-result" data-i="${i}" data-target="${it.target}" href="${it.target}">
+          <div class="search-cat">${it.type}</div>
+          <div><div class="search-title">${hl(it.title, it._keyword)}</div><div class="search-snippet">${hl(it.snippet, it._keyword).slice(0, 110)}</div></div>
+        </a>`).join('');
+      sResults.querySelectorAll('.search-result').forEach(a => a.addEventListener('click', ev => {
+        ev.preventDefault(); jumpTo(a.getAttribute('data-target'), q || a.querySelector('.search-title')?.textContent || '');
+      }));
+    }
+    // 热门搜索标签点击
+    if (sTags) {
+      sTags.querySelectorAll('.search-tag').forEach(tag => {
+        tag.addEventListener('click', () => { const q = tag.dataset.q; sInput.value = q; renderResults(q); sInput.focus(); });
+      });
+    }
+    function jumpTo(target, keyword) {
+      closeSearch();
+      const el = document.querySelector(target);
+      if (!el) return;
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (keyword) highlightInSection(el, keyword);
+    }
+    // 板块内关键词高亮
+    function clearHighlights(section) {
+      section.querySelectorAll('mark.search-hit').forEach(m => {
+        const parent = m.parentNode;
+        if (!parent) return;
+        parent.replaceChild(document.createTextNode(m.textContent), m);
+        parent.normalize();
+      });
+    }
+    function highlightInSection(section, query) {
+      const q = (query || '').trim();
+      if (!q) return;
+      clearHighlights(section);
+      const lower = q.toLowerCase();
+      const walker = document.createTreeWalker(section, NodeFilter.SHOW_TEXT, {
+        acceptNode(node) {
+          if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+          const p = node.parentElement;
+          if (!p) return NodeFilter.FILTER_REJECT;
+          if (p.closest('script, style, input, textarea, .search-overlay, .search-panel, .topbar')) return NodeFilter.FILTER_REJECT;
+          return node.nodeValue.toLowerCase().indexOf(lower) === -1 ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+        }
+      });
+      const targets = [];
+      let n;
+      while ((n = walker.nextNode())) targets.push(n);
+      if (!targets.length) return;
+      targets.slice(0, 30).forEach(textNode => {
+        const text = textNode.nodeValue;
+        const idx = text.toLowerCase().indexOf(lower);
+        if (idx === -1) return;
+        const frag = document.createDocumentFragment();
+        if (idx > 0) frag.appendChild(document.createTextNode(text.slice(0, idx)));
+        const mark = document.createElement('mark');
+        mark.className = 'search-hit';
+        mark.textContent = text.slice(idx, idx + q.length);
+        frag.appendChild(mark);
+        if (idx + q.length < text.length) frag.appendChild(document.createTextNode(text.slice(idx + q.length)));
+        textNode.parentNode.replaceChild(frag, textNode);
+      });
+      setTimeout(() => clearHighlights(section), 3000);
+    }
+    sInput.addEventListener('input', e => renderResults(e.target.value));
+    sInput.addEventListener('keydown', e => {
+      if (e.key === 'ArrowDown') { e.preventDefault(); activeIdx = Math.min(activeIdx + 1, curList.length - 1); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); activeIdx = Math.max(activeIdx - 1, 0); }
+      else if (e.key === 'Enter') { e.preventDefault(); if (curList[activeIdx]) jumpTo(curList[activeIdx].target); }
+      else return;
+      sResults.querySelectorAll('.search-result').forEach((a, i) => a.classList.toggle('active', i === activeIdx));
+      if (activeIdx >= 0) { const node = sResults.querySelectorAll('.search-result')[activeIdx]; if (node) node.scrollIntoView({ block: 'nearest' }); }
+    });
+    $('#navSearch').addEventListener('click', openSearch);
+    $('#searchClose').addEventListener('click', closeSearch);
+    overlay.addEventListener('click', e => { if (e.target === overlay) closeSearch(); });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && overlay.classList.contains('open')) closeSearch();
+      if ((e.key === 'k' || e.key === 'K') && (e.metaKey || e.ctrlKey)) { e.preventDefault(); overlay.classList.contains('open') ? closeSearch() : openSearch(); }
+    });
+
+    // IP 作品图片放大查看器
+    const lightbox = $('#imgLightbox');
+    const lightboxStage = $('#lightboxStage');
+    const lightboxImg = $('#lightboxImg');
+    const lightboxClose = $('#lightboxClose');
+    function openLightbox(src, alt) {
+      lightboxImg.src = src;
+      lightboxImg.alt = alt || '';
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      lightboxStage.classList.remove('zoomed');
+    }
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      lightboxStage.classList.remove('zoomed');
+      lightboxImg.style.width = '';
+      lightboxImg.style.height = '';
+    }
+    if (lightbox && lightboxImg) {
+      $('#ipCompareImg')?.addEventListener('click', e => {
+        e.preventDefault();
+        openLightbox(e.currentTarget.src, e.currentTarget.alt);
+      });
+      $('#ipWorksList')?.addEventListener('click', e => {
+        const img = e.target.closest('.ip-work-img img');
+        if (!img) return;
+        e.preventDefault();
+        openLightbox(img.src, img.alt);
+      });
+      lightboxStage.addEventListener('click', e => {
+        if (e.target === lightboxImg || e.target.tagName === 'IMG') {
+          const isZoomed = lightboxStage.classList.toggle('zoomed');
+          if (isZoomed && lightboxImg.naturalWidth) {
+            lightboxImg.style.width = (lightboxImg.naturalWidth * 2) + 'px';
+            lightboxImg.style.height = 'auto';
+          } else {
+            lightboxImg.style.width = '';
+            lightboxImg.style.height = '';
+          }
+        } else {
+          closeLightbox();
+        }
+      });
+      lightboxClose.addEventListener('click', closeLightbox);
+      lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox(); });
+    }
+
+    // 回到顶部
+    const backToTop = $('#backToTop');
+    if (backToTop) {
+      window.addEventListener('scroll', () => backToTop.classList.toggle('visible', window.scrollY > 600), { passive: true });
+      backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    }
+  </script>
 </body>
 </html>
