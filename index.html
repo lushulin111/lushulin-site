@@ -3,7 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>陆姝霖 · 个人网站</title>
+  <title>陆姝霖·个人网站</title>
+  <meta name="description" content="陆姝霖 · 知识产品架构师。5 年知识付费与转化经验，独立设计 11 节原创课程、规划 AI 知识库 + 智能体落地方案。近期探索将知识资产转化为 AI 产品（知识库 + 智能体）。">
+  <meta name="keywords" content="陆姝霖,知识付费,课程研发,转化链路,AI 产品规划,知识库,智能体,内容设计,用户教育,售前讲师">
+
+  <!-- Open Graph / 社交分享 -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="陆姝霖 · 个人网站 | 知识产品架构师">
+  <meta property="og:description" content="5 年知识付费与转化经验，独立设计 11 节原创课程、规划 AI 知识库 + 智能体落地方案。">
+  <meta property="og:image" content="https://lushulin.netlify.app/assets/photos/avatar.webp">
+  <meta property="og:url" content="https://lushulin.netlify.app/">
+  <meta property="og:site_name" content="陆姝霖·个人网站">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="陆姝霖 · 个人网站 | 知识产品架构师">
+  <meta name="twitter:description" content="5 年知识付费与转化经验，独立规划 AI 知识库 + 智能体落地方案。">
+  <meta name="twitter:image" content="https://lushulin.netlify.app/assets/photos/avatar.webp">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter+Tight:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@300;400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -59,6 +76,16 @@
       -webkit-backdrop-filter: blur(20px) saturate(140%);
       border-bottom: 1px solid var(--hair);
       font-size: 13px;
+    }
+    /* 顶部阅读进度条 */
+    #readProgress {
+      position: fixed;
+      top: 0; left: 0;
+      width: 0%; height: 2px;
+      background: var(--accent);
+      z-index: 100;
+      pointer-events: none;
+      transition: width 0.1s linear;
     }
     .topbar-logo {
       font-family: "Fraunces", serif;
@@ -243,11 +270,23 @@
       line-height: 1.55;
       margin-bottom: 18px;
       max-width: 520px;
+      min-height: 1.55em;
     }
     .hero-role em {
       font-style: italic;
       color: var(--accent);
     }
+    #typewriter { white-space: nowrap; }
+    .type-cursor {
+      display: inline-block;
+      width: 2px;
+      height: 0.85em;
+      background: var(--accent);
+      margin-left: 0.12em;
+      vertical-align: -0.05em;
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
     .hero-desc {
       font-size: 15px;
       color: var(--ink-2);
@@ -375,6 +414,26 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
       box-shadow: 0 4px 10px rgba(217,53,68,0.25);
+    }
+
+    /* Hero 持续动效（克制）：照片 3D 容器 + 噪点极慢漂移；tilt 由 JS 驱动 */
+    .hero-visual { perspective: 1100px; }
+    .hero-photo {
+      transform-style: preserve-3d;
+      will-change: transform;
+      transition: transform .5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes grainDrift {
+      from { background-position: 0 0; }
+      to   { background-position: 24px 16px; }
+    }
+    .hero-photo::after { animation: grainDrift 20s linear infinite alternate; }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-photo::after { animation: none; }
+      .hero-text, .hero-visual { transform: none !important; }
+      .journey::before { transform: scaleY(1) !important; }
+      .journey .j-item.reveal-item.in { animation: none !important; }
+      .journey .j-dot { transform: scale(1) !important; transition: none !important; }
     }
 
     /* === 业绩数据 === */
@@ -523,56 +582,46 @@
     }
 
     /* ============================================
-       核心能力 —— 编辑型条目
+       核心能力 —— 方案C 杂志拉页 · 每行异构 widget
        ============================================ */
-    .caps-list {
+    .c-list {
       border-top: 1px solid var(--ink);
     }
-    .cap-row {
+    .c-row {
       display: grid;
-      grid-template-columns: 60px 1.4fr 1.6fr;
-      gap: 40px;
+      grid-template-columns: 64px 1fr 300px;
+      gap: 32px;
       align-items: center;
-      padding: 32px 0;
+      padding: 36px 0;
       border-bottom: 1px solid var(--hair);
-      transition: padding 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.4s ease;
+      transition: background 0.4s cubic-bezier(0.16, 1, 0.3, 1), padding 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       cursor: default;
     }
-    .cap-row:hover {
+    .c-row:hover {
       background: var(--surface);
-      padding-left: 20px;
-      padding-right: 20px;
+      padding-left: 18px;
+      padding-right: 18px;
       border-color: var(--ink);
     }
-    .cap-row:hover .cap-num { color: var(--accent); }
-    .cap-row:hover .cap-icon { background: var(--accent-soft); color: var(--accent); border-color: var(--accent); }
-    .cap-num {
+    .c-num {
       font-family: "Fraunces", serif;
       font-weight: 300;
-      font-size: 28px;
-      color: var(--ink-3);
+      font-size: 22px;
+      color: var(--accent);
       letter-spacing: -0.02em;
       transition: color 0.3s ease;
       font-feature-settings: "tnum";
     }
-    .cap-icon {
-      width: 44px; height: 44px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border: 1.5px solid var(--ink);
-      border-radius: 50%;
-      font-size: 18px;
-      transition: background 0.3s ease, color 0.3s ease;
-    }
-    .cap-title {
+    .c-row:hover .c-num { color: var(--accent); }
+    /* icon 列已移除：emoji 圆框与整站单色体系冲突，序号 + 标题组 + widget 三列更干净 */
+    .c-title {
       font-family: "Noto Serif SC", serif;
-      font-size: 22px;
+      font-size: 21px;
       font-weight: 500;
       color: var(--ink);
       letter-spacing: 0.02em;
     }
-    .cap-en {
+    .c-en {
       font-family: "Fraunces", serif;
       font-style: italic;
       font-size: 11px;
@@ -581,10 +630,79 @@
       margin-top: 4px;
       text-transform: uppercase;
     }
-    .cap-desc {
+    .c-desc {
       font-size: 14.5px;
       color: var(--ink-2);
       line-height: 1.75;
+      margin-top: 10px;
+    }
+
+    /* 通用 widget 区 */
+    .c-widget { border-left: 1px solid var(--hair); padding-left: 28px; min-height: 84px; }
+    .w-label {
+      font-family: "Inter Tight", sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-4);
+      margin-bottom: 12px;
+    }
+
+    /* 1. 对比条 */
+    .bar { display: flex; align-items: center; gap: 10px; margin-bottom: 9px; }
+    .bar .bl { font-size: 11px; color: var(--ink-3); width: 42px; flex: 0 0 auto; text-align: right; }
+    .bar .bt { flex: 1; height: 22px; background: var(--matte); border-radius: 2px; position: relative; overflow: hidden; }
+    .bar .bf { position: absolute; left: 0; top: 0; bottom: 0; background: var(--ink); border-radius: 2px; }
+    .bar .bf.accent { background: var(--accent); }
+    .bar .bv { font-family: "Fraunces", serif; font-size: 14px; font-weight: 500; color: var(--ink); width: 46px; flex: 0 0 auto; }
+
+    /* 2. 刻度点 */
+    .ticks { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+    .tick { width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+    .ticks .cap { font-family: "Fraunces", serif; font-size: 22px; font-weight: 300; color: var(--ink); margin-left: 6px; font-feature-settings: "tnum"; }
+
+    /* 3. 课程列表 */
+    .courselist { list-style: none; }
+    .courselist li {
+      font-family: "Noto Serif SC", serif;
+      font-size: 14px;
+      color: var(--ink-2);
+      padding: 5px 0 5px 18px;
+      position: relative;
+      border-bottom: 1px solid var(--hair);
+    }
+    .courselist li:last-child { border-bottom: none; }
+    .courselist li::before { content: ''; position: absolute; left: 0; top: 14px; width: 9px; height: 1px; background: var(--accent); }
+
+    /* 4. 前后对比 */
+    .ba { display: flex; gap: 18px; }
+    .ba .col { flex: 1; }
+    .ba .k { font-size: 11px; color: var(--ink-3); margin-bottom: 6px; }
+    .ba .from { font-family: "Fraunces", serif; font-size: 18px; color: var(--ink-4); text-decoration: line-through; }
+    .ba .to { font-family: "Fraunces", serif; font-size: 26px; color: var(--accent); font-weight: 300; margin-top: 2px; font-feature-settings: "tnum"; }
+    .ba .arrow { font-size: 18px; color: var(--ink-3); align-self: center; }
+
+    /* 5. 比率进度 */
+    .ratio-track { height: 10px; background: var(--matte); border-radius: 6px; overflow: hidden; margin: 10px 0 8px; }
+    .ratio-fill { height: 100%; background: linear-gradient(90deg, var(--accent), #b0283a); border-radius: 6px; }
+    .ratio-vals { display: flex; justify-content: space-between; font-family: "Fraunces", serif; font-size: 13px; color: var(--ink-2); }
+    .ratio-vals .to { color: var(--accent); font-weight: 500; }
+
+    /* 6. 大数字 */
+    .bigstat { display: flex; align-items: baseline; gap: 10px; }
+    .bigstat .n { font-family: "Fraunces", serif; font-size: 54px; font-weight: 300; color: var(--accent); line-height: 0.9; font-feature-settings: "tnum"; }
+    .bigstat .u { font-size: 14px; color: var(--ink-2); }
+
+    /* 7. 文档标签 */
+    .doctag { display: inline-flex; flex-direction: column; gap: 6px; }
+    .doctag .t { font-family: "Noto Serif SC", serif; font-size: 20px; font-weight: 500; color: var(--ink); }
+    .doctag .n { font-family: "Fraunces", serif; font-style: italic; font-size: 12px; color: var(--ink-3); }
+    .doctag .tag {
+      display: inline-block; margin-top: 4px;
+      font-family: "Inter Tight", sans-serif; font-size: 10px; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent);
+      border: 1px solid var(--accent); padding: 4px 10px; align-self: flex-start;
     }
     .diff {
       margin-bottom: 72px;
@@ -1114,6 +1232,99 @@
     }
 
     /* ============================================
+       AI 产品规划 —— 6 步框架档案夹手风琴（复用 ai-showcase-archive 设计）
+       ============================================ */
+    .ai-intro-row{
+      font-family:"Fraunces",serif;font-style:italic;font-size:14px;font-weight:400;
+      color:var(--ink-2);line-height:1.7;padding:14px 0 18px;margin-bottom:24px;
+      border-bottom:1px dashed var(--hair);letter-spacing:.02em;
+    }
+    .ai-intro-row b{color:var(--accent);font-family:"Fraunces",serif;font-style:normal;
+      font-weight:500;font-feature-settings:"tnum";letter-spacing:0}
+
+    .ai-archive{display:flex;flex-direction:column;border:1px solid var(--frame);
+      background:var(--paper);overflow:hidden}
+    .ai-arc-row{border-bottom:1px solid var(--hair);background:var(--paper)}
+    .ai-arc-row:last-child{border-bottom:none}
+    .ai-arc-row.open{background:var(--paper-warm)}
+
+    .ai-arc-head{display:grid;grid-template-columns:64px 1fr auto auto;gap:24px;
+      align-items:center;padding:18px 22px;cursor:pointer;text-align:left;
+      background:none;border:none;width:100%;font:inherit;color:inherit;
+      transition:background .3s var(--ease)}
+    .ai-arc-head:hover{background:var(--matte)}
+    .ai-arc-row.open .ai-arc-head{background:transparent}
+    .ai-arc-head:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+    .ai-arc-idx{font-family:"Fraunces",serif;font-weight:300;font-size:22px;line-height:1;
+      letter-spacing:-.01em;color:var(--accent);font-feature-settings:"tnum";
+      text-align:right}
+    .ai-arc-meta{display:flex;flex-direction:column;gap:3px;min-width:0}
+    .ai-arc-meta .ai-arc-title{font-family:"Noto Serif SC",serif;font-weight:500;
+      font-size:18px;line-height:1.32;color:var(--ink)}
+    .ai-arc-meta .ai-arc-tag{font-family:"Inter Tight","Noto Sans SC",sans-serif;
+      font-size:12px;color:var(--ink-3);margin-top:9px;font-weight:400;line-height:1.5}
+
+    .ai-arc-chips{display:flex;gap:8px;align-items:stretch}
+    .ai-chip{display:flex;flex-direction:column;gap:1px;padding:7px 11px 6px;
+      border:1px solid var(--hair-strong);background:var(--paper);border-radius:2px;
+      min-width:120px;transition:background .3s var(--ease),border-color .3s var(--ease)}
+    .ai-chip .ai-chip-row{display:flex;align-items:baseline;gap:6px}
+    .ai-chip .ai-chip-num{font-family:"Fraunces",serif;font-weight:300;font-size:18px;
+      line-height:1;color:var(--ink);font-feature-settings:"tnum"}
+    .ai-chip .ai-chip-unit{font-family:"Inter Tight",sans-serif;font-size:10px;
+      color:var(--ink-3);font-weight:500}
+    .ai-chip .ai-chip-lab{font-family:"Inter Tight",sans-serif;font-size:10px;
+      color:var(--ink-2);font-weight:600;line-height:1.3;margin-top:2px;letter-spacing:.02em}
+    .ai-arc-row.open .ai-chip{background:var(--matte);border-color:var(--accent)}
+
+    .ai-arc-toggle{height:40px;padding:0 14px 0 12px;border:1px solid var(--frame);
+      background:var(--paper);color:var(--ink-2);border-radius:8px;cursor:pointer;
+      display:inline-flex;align-items:center;gap:8px;transition:all .3s var(--ease);
+      flex:0 0 auto;font-family:"Inter Tight",sans-serif;font-size:12px;
+      font-weight:600;letter-spacing:.05em}
+    .ai-arc-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+    .ai-arc-toggle:hover{border-color:var(--accent);color:var(--accent)}
+    .ai-arc-toggle svg{width:14px;height:14px;transition:transform .35s var(--ease);flex:0 0 auto}
+    .ai-arc-row.open .ai-arc-toggle{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+    .ai-arc-row.open .ai-arc-toggle svg{transform:rotate(45deg)}
+
+    .ai-arc-body{max-height:0;overflow:hidden;opacity:0;
+      transition:max-height .5s var(--ease),opacity .4s var(--ease)}
+    .ai-arc-row.open .ai-arc-body{max-height:2000px;opacity:1}
+    .ai-arc-body-inner{padding:6px 22px 22px;border-top:1px dashed var(--hair)}
+    .ai-body-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;padding-top:14px}
+
+    .ai-io{display:flex;flex-direction:column;gap:18px}
+    .ai-io-row{display:grid;grid-template-columns:62px 1fr;gap:14px;align-items:start}
+    .ai-io-lab{font-family:"JetBrains Mono","SF Mono",monospace;font-size:10px;
+      font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);
+      padding-top:4px;border-top:1px solid var(--accent);
+      display:inline-block;width:fit-content;padding-right:6px}
+    .ai-io-val{font-size:14.5px;line-height:1.65;color:var(--ink-2)}
+
+    .ai-arc-side{display:flex;flex-direction:column;gap:18px}
+    .ai-r-metric{display:grid;grid-template-columns:1fr 1fr;gap:14px;
+      padding:18px 16px;background:rgba(255,255,255,.5);border:1px solid var(--hair);
+      border-left:3px solid var(--accent)}
+    .ai-r-m-cell{display:flex;flex-direction:column;gap:3px}
+    .ai-r-m-num{font-family:"Fraunces",serif;font-weight:300;font-size:30px;line-height:1;
+      letter-spacing:-.02em;color:var(--ink);font-feature-settings:"tnum"}
+    .ai-r-m-num .ai-r-m-unit{font-size:14px;color:var(--ink-3);margin-left:2px}
+    .ai-r-m-lab{font-family:"Inter Tight",sans-serif;font-size:11px;font-weight:600;
+      color:var(--ink-2);letter-spacing:.04em;margin-top:3px}
+    .ai-r-m-note{font-family:"Inter Tight",sans-serif;font-size:11px;color:var(--ink-3);
+      line-height:1.45;margin-top:2px}
+    .ai-r-note{font-family:"Fraunces",serif;font-style:italic;font-weight:400;font-size:16px;
+      line-height:1.6;color:var(--ink-2);letter-spacing:.01em;margin-top:6px}
+    .ai-r-foot{font-size:12px;color:var(--ink-3);border-top:1px dashed var(--hair);
+      padding-top:14px;line-height:1.65}
+    .ai-r-foot b{color:var(--ink-2);font-weight:600}
+    .ai-r-archive{align-self:flex-end;font-family:"JetBrains Mono",monospace;
+      font-size:9px;letter-spacing:.16em;color:var(--ink-3);
+      border:1px solid var(--hair-strong);padding:3px 6px;text-transform:uppercase;
+      margin-top:6px}
+
+    /* ============================================
        工作旅程 —— 时间线
        ============================================ */
     .journey {
@@ -1129,6 +1340,8 @@
       bottom: 12px;
       width: 1px;
       background: var(--ink);
+      transform: scaleY(var(--line, 0));
+      transform-origin: top center;
     }
     .j-item {
       display: grid;
@@ -1169,6 +1382,10 @@
       border: 2px solid var(--accent);
       z-index: 1;
     }
+    /* 旅程专属入场：节点沿时间轴从左滑入，红点错峰弹出 */
+    .journey .j-item.reveal-item.in { animation: jIn .7s cubic-bezier(0.16,1,0.3,1) both; animation-delay: calc(var(--i, 0) * 90ms); }
+    .journey .j-dot { transform: scale(0); transform-origin: 50% 50%; transition: transform .5s cubic-bezier(0.16,1,0.3,1); transition-delay: calc(var(--i, 0) * 90ms + .12s); }
+    .journey .j-item.reveal-item.in .j-dot { transform: scale(1); }
     .j-card { max-width: 720px; }
     .j-role {
       font-family: "Noto Serif SC", serif;
@@ -1448,6 +1665,7 @@
 
     .section.reveal.in .sec-head { animation: headIn .9s cubic-bezier(0.16, 1, 0.3, 1) both; }
     @keyframes headIn { from { opacity: 0; transform: translateX(-16px); } to { opacity: 1; transform: none; } }
+    @keyframes jIn { from { opacity: 0; transform: translateX(-22px); } to { opacity: 1; transform: none; } }
 
     .stat-num .count { font-variant-numeric: tabular-nums; }
 
@@ -1473,8 +1691,10 @@
     .nav-toggle {
       display: none; flex-direction: column; gap: 5px; width: 36px; height: 36px;
       padding: 9px; background: none; border: 1px solid var(--hair-strong);
-      border-radius: 6px; cursor: pointer;
+      border-radius: 6px; cursor: pointer; position: relative;
     }
+    /* 透明展开层：把可点区域撑到 44×44，满足触控目标下限，视觉尺寸不变 */
+    .nav-toggle::before { content: ''; position: absolute; inset: -5px; border-radius: 10px; }
     .nav-toggle span { display: block; height: 2px; background: var(--ink); border-radius: 2px; transition: transform .3s ease, opacity .3s ease; }
     .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
@@ -1543,6 +1763,7 @@
     @media (max-width: 960px) {
       .topbar { grid-template-columns: 1fr auto; padding: 14px 20px; }
       .topbar-nav { display: none; }
+      .topbar-issue { display: none; }
       .nav-toggle { display: flex; }
       .nav-search span { display: none; }
       .mobile-nav {
@@ -1563,12 +1784,15 @@
       .stat { padding: 32px 20px; }
       .stat:nth-child(2n) { border-right: none; }
       .stat:nth-child(n+3) { border-top: 1px solid var(--hair); }
+      #typewriter { white-space: normal; }
+      .hero { padding-top: 48px; padding-bottom: 64px; }
+      .stat-num { font-size: 40px; }
       .about-grid { grid-template-columns: 1fr; gap: 40px; }
       .about-side { position: relative; top: 0; max-width: 280px; margin: 0 auto; }
       .sec-head { grid-template-columns: 60px 1fr; }
       .sec-num { font-size: 56px; }
-      .cap-row { grid-template-columns: 50px 1fr 24px; gap: 16px; }
-      .cap-icon { display: none; }
+      .c-row { grid-template-columns: 44px 1fr; gap: 16px; padding: 26px 0; }
+      .c-widget { grid-column: 1 / -1; border-left: none; border-top: 1px solid var(--hair); padding-left: 0; padding-top: 16px; margin-top: 6px; }
       .course-split { grid-template-columns: 1fr; }
       .course-video-frame { position: relative; top: 0; }
       .chain { grid-template-columns: 1fr; gap: 32px; }
@@ -1591,10 +1815,75 @@
       .ip-compare-media { padding: 12px; }
       .ip-compare-figure figcaption { padding: 28px; }
       .ip-compare-figure figcaption::after { top: 28px; right: 28px; width: 28px; height: 28px; }
+      .ai-arc-head{grid-template-columns:46px 1fr auto;gap:12px;padding:14px 16px}
+      .ai-arc-idx{font-size:18px}
+      .ai-arc-chips{display:none}
+      .ai-arc-meta .ai-arc-title{font-size:16px}
+      .ai-arc-toggle{padding:0;width:40px;justify-content:center}
+      .ai-arc-toggle .ai-arc-toggle-text{display:none}
+      .ai-arc-body-inner{padding:6px 16px 20px}
+      .ai-body-grid{grid-template-columns:1fr;gap:24px;padding-top:14px}
+      .ai-io-row{grid-template-columns:54px 1fr;gap:10px}
+      .ai-r-metric{grid-template-columns:1fr}
+      .ai-r-note{font-size:15px}
+      .ai-intro-row{font-size:12px}
+    }
+
+    /* ============================================
+       A11y · 键盘可达性（focus + skip-link）
+       ============================================ */
+    /* 全局键盘焦点环：朱红 2px，与整站 accent 一致 */
+    a:focus-visible,
+    button:focus-visible,
+    [role="button"]:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible,
+    summary:focus-visible,
+    .nav-toggle:focus-visible,
+    .topbar-nav a:focus-visible,
+    .mobile-nav a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+    /* 隐藏输入按钮在 hover 时的 outline 仍显示 */
+    a:focus:not(:focus-visible),
+    button:focus:not(:focus-visible) {
+      outline: none;
+    }
+    /* Skip-to-content：键盘用户跳过导航直达正文 */
+    .skip-link {
+      position: absolute;
+      top: -200px;
+      left: 16px;
+      background: var(--ink);
+      color: var(--bg);
+      padding: 14px 22px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      z-index: 9999;
+      transition: top 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 8px 24px rgba(15,14,12,0.20);
+    }
+    .skip-link:focus,
+    .skip-link:focus-visible {
+      top: 16px;
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
     }
   </style>
 </head>
 <body>
+
+  <!-- 顶部阅读进度条 -->
+  <div id="readProgress" role="progressbar" aria-label="阅读进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+
+  <!-- 键盘可达性：跳到主要内容 -->
+  <a href="#hero" class="skip-link">跳到主要内容</a>
 
   <!-- 顶部条 -->
   <header class="topbar">
@@ -1603,6 +1892,7 @@
       <a href="#about">关于我</a>
       <a href="#caps">核心能力</a>
       <a href="#course">课程设计</a>
+      <a href="#ai-projects">AI 产品</a>
       <a href="#ip">IP作品</a>
       <a href="#journey">工作旅程</a>
       <a href="#contact">联系我</a>
@@ -1618,6 +1908,7 @@
       <a href="#about">关于我</a>
       <a href="#caps">核心能力</a>
       <a href="#course">课程设计</a>
+      <a href="#ai-projects">AI 产品</a>
       <a href="#ip">IP作品</a>
       <a href="#journey">工作旅程</a>
       <a href="#contact">联系我</a>
@@ -1654,7 +1945,7 @@
           <button class="search-tag" data-q="三差模型">三差模型</button>
           <button class="search-tag" data-q="抖音视频数据">抖音视频数据</button>
           <button class="search-tag" data-q="课程研发">课程研发</button>
-          <button class="search-tag" data-q="关于我">关于我</button>
+          <button class="search-tag" data-q="AI产品规划">AI产品规划</button>
         </div>
       </div>
     </div>
@@ -1671,8 +1962,8 @@
       <div class="hero-text">
         <div class="hero-eyebrow">独立课程开发者 · 转化策略师</div>
         <h1 class="hero-name">陆姝霖<span class="mark-dot"></span></h1>
-        <div class="hero-role" id="titleRole">知识产品架构师 <em>·</em> 转化链路设计者</div>
-        <p class="hero-desc" id="titleSubtitle">五年的知识付费与内容转化经验，专注用户教育场景。把复杂产品拆解成零基础用户能听懂的内容结构，并把它变成可复制的SOP</p>
+        <div class="hero-role" id="titleRole"><span id="typewriter"></span><span class="type-cursor" aria-hidden="true"></span></div>
+        <p class="hero-desc" id="titleSubtitle">五年知识付费课程交付，单场转化最高 18%（行业均值 5%）。<br>带团队把讲师能力拆成可复制 SOP，跨行摄影从零跑通 IP 冷启动。<br>擅长把复杂产品，拆成零基础用户也能听懂的内容结构。</p>
         <div class="hero-cta-row">
           <a href="#contact" class="cta-primary">
             联系我
@@ -1735,7 +2026,7 @@
     </div>
 
     <div id="capabilityDiff"></div>
-    <div class="caps-list" id="capabilitiesGrid"></div>
+    <div class="c-list" id="capabilitiesGrid"></div>
   </section>
 
   <!-- 课程研发设计展示 -->
@@ -1752,10 +2043,26 @@
     <div class="course-list" id="courseParts"></div>
   </section>
 
+  <!-- AI 产品规划 -->
+  <section class="section reveal" id="ai-projects">
+    <div class="sec-head">
+      <div class="sec-num">04<span class="slash">/</span></div>
+      <div>
+        <h2 class="sec-title-zh">AI 产品规划</h2>
+        <div class="sec-title-en">Turning knowledge assets into AI-native products</div>
+      </div>
+      <div class="sec-tag">AI Strategy</div>
+    </div>
+
+    <p class="ai-intro-row">独立规划 · 产品负责人 · <b>11 章</b> / <b>约万字</b> / 覆盖 <b>调研 · 测算 · 选型 · 退出策略</b></p>
+
+    <div class="ai-archive" id="aiArchive" aria-label="六章方案档案夹"></div>
+  </section>
+
   <!-- IP 作品 -->
   <section class="section reveal" id="ip">
     <div class="sec-head">
-      <div class="sec-num">04<span class="slash">/</span></div>
+      <div class="sec-num">05<span class="slash">/</span></div>
       <div>
         <h2 class="sec-title-zh">IP 作品</h2>
         <div class="sec-title-en">Real metrics, original content, no filters</div>
@@ -1778,7 +2085,7 @@
   <!-- 工作旅程 -->
   <section class="section reveal" id="journey">
     <div class="sec-head">
-      <div class="sec-num">05<span class="slash">/</span></div>
+      <div class="sec-num">06<span class="slash">/</span></div>
       <div>
         <h2 class="sec-title-zh">工作旅程</h2>
         <div class="sec-title-en">From the stage to the system, five years in motion</div>
@@ -1817,7 +2124,7 @@
     <div class="lightbox-hint">点击图片放大 · 再次点击缩小</div>
   </div>
 
-  <script src="data.js"></script>
+  <script src="data.js?v=20260806"></script>
   <script>
     /* === 渲染：复用 SITE_CONFIG === */
     const $ = s => document.querySelector(s);
@@ -1848,24 +2155,48 @@
     `;
     if (aboutData.photo) $('#aboutLongPhotoHome').src = aboutData.photo;
 
-    // 核心能力
-    const capEN = {
-      '高客单价转化': 'High-ticket Conversion',
-      '冷启动 SOP 设计': 'Cold-start SOP',
-      '课程研发': 'Course Design',
-      '团队复制': 'Team Scaling',
-      'ROI 优化': 'ROI Optimization',
-      '内容文案': 'Content & Copywriting'
-    };
+    // 核心能力 —— 方案C 杂志拉页（每行异构 widget）
+    function renderCapWidget(w) {
+      if (!w) return '';
+      if (w.type === 'bars') {
+        const max = Math.max(w.mine.v, w.ind.v);
+        const pct = v => (v / max * 100).toFixed(0);
+        return `<div class="bar"><span class="bl">${w.mine.l}</span><span class="bt"><span class="bf accent" style="width:${pct(w.mine.v)}%"></span></span><span class="bv">${w.mine.v}%</span></div>`
+             + `<div class="bar"><span class="bl">${w.ind.l}</span><span class="bt"><span class="bf" style="width:${pct(w.ind.v)}%"></span></span><span class="bv">${w.ind.v}%</span></div>`;
+      }
+      if (w.type === 'ticks') {
+        let t = ''; for (let i = 0; i < w.n; i++) t += `<span class="tick"></span>`;
+        return `<div class="ticks">${t}<span class="cap">${w.n} 场</span></div>`;
+      }
+      if (w.type === 'list') {
+        return `<ul class="courselist">${w.items.map(i => `<li>${i}</li>`).join('')}</ul>`;
+      }
+      if (w.type === 'ba') {
+        return `<div class="ba">` + w.cols.map(c => `
+          <div class="col"><div class="k">${c.k}</div><div class="from">${c.from}</div><div class="to">${c.to}</div></div>`).join('<div class="arrow">→</div>') + `</div>`;
+      }
+      if (w.type === 'ratio') {
+        return `<div class="ratio-track"><div class="ratio-fill" style="width:${w.pct}%"></div></div>`
+             + `<div class="ratio-vals"><span>${w.from}</span><span class="to">${w.to}</span></div>`;
+      }
+      if (w.type === 'bigstat') {
+        return `<div class="bigstat"><span class="n">${w.n}</span><span class="u">${w.u}</span></div>`;
+      }
+      if (w.type === 'doctag') {
+        return `<div class="doctag"><span class="t">${w.t}</span><span class="n">${w.n}</span><span class="tag">${w.tag}</span></div>`;
+      }
+      return '';
+    }
+
     $('#capabilitiesGrid').innerHTML = SITE_CONFIG.coreCapabilities.map((c, i) => `
-      <div class="cap-row reveal-item" style="--i:${i}">
-        <div class="cap-num">${String(i+1).padStart(2,'0')}</div>
-        <div class="cap-icon">${c.icon}</div>
+      <div class="c-row reveal-item" style="--i:${i}">
+        <div class="c-num">${String(i+1).padStart(2,'0')}</div>
         <div>
-          <div class="cap-title">${c.title}</div>
-          <div class="cap-en">${capEN[c.title] || ''}</div>
-          <div class="cap-desc" style="margin-top:10px;">${c.desc}</div>
+          <div class="c-title">${c.title}</div>
+          <div class="c-en">${c.en || ''}</div>
+          <div class="c-desc">${c.desc}</div>
         </div>
+        <div class="c-widget"><div class="w-label">${c.widget.label}</div>${renderCapWidget(c.widget)}</div>
       </div>
     `).join('');
 
@@ -1969,6 +2300,94 @@
     };
     $('#courseParts').innerHTML = SITE_CONFIG.courseShowcase.parts.map(renderCoursePart).join('');
 
+    // AI 产品规划 —— 6 步框架档案夹手风琴
+    const aiArchive = document.getElementById('aiArchive');
+    if (Array.isArray(SITE_CONFIG.aiProjects) && aiArchive) {
+      const ICON_PLUS_AI = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>';
+      const buildAiRow = (s, i) => {
+        const row = document.createElement('div');
+        row.className = 'ai-arc-row';
+        row.dataset.index = i;
+        row.innerHTML = `
+          <button class="ai-arc-head" aria-expanded="false" aria-label="第${s.n}章 ${s.t}，点击展开">
+            <span class="ai-arc-idx">${s.n}</span>
+            <span class="ai-arc-meta">
+              <span class="ai-arc-title">${s.t}</span>
+              <span class="ai-arc-tag">${s.tag}</span>
+            </span>
+            <span class="ai-arc-chips">
+              <span class="ai-chip">
+                <span class="ai-chip-row"><span class="ai-chip-num">${s.metricA.num}</span><span class="ai-chip-unit">${s.metricA.unit}</span></span>
+                <span class="ai-chip-lab">${s.metricA.lab}</span>
+              </span>
+              <span class="ai-chip">
+                <span class="ai-chip-row"><span class="ai-chip-num">${s.metricB.num}</span><span class="ai-chip-unit">${s.metricB.unit}</span></span>
+                <span class="ai-chip-lab">${s.metricB.lab}</span>
+              </span>
+            </span>
+            <span class="ai-arc-toggle">${ICON_PLUS_AI}<span class="ai-arc-toggle-text">展开</span></span>
+          </button>
+          <div class="ai-arc-body">
+            <div class="ai-arc-body-inner">
+              <div class="ai-body-grid">
+                <div class="ai-io">
+                  <div class="ai-io-row"><span class="ai-io-lab">输入</span><span class="ai-io-val">${s.input}</span></div>
+                  <div class="ai-io-row"><span class="ai-io-lab">我做的</span><span class="ai-io-val">${s.did}</span></div>
+                  <div class="ai-io-row"><span class="ai-io-lab">产出</span><span class="ai-io-val">${s.output}</span></div>
+                </div>
+                <div class="ai-arc-side">
+                  <div class="ai-r-metric">
+                    <div class="ai-r-m-cell">
+                      <div class="ai-r-m-num">${s.metricA.num}<span class="ai-r-m-unit">${s.metricA.unit}</span></div>
+                      <div class="ai-r-m-lab">${s.metricA.lab}</div>
+                      <div class="ai-r-m-note">${s.metricA.note}</div>
+                    </div>
+                    <div class="ai-r-m-cell">
+                      <div class="ai-r-m-num">${s.metricB.num}<span class="ai-r-m-unit">${s.metricB.unit}</span></div>
+                      <div class="ai-r-m-lab">${s.metricB.lab}</div>
+                      <div class="ai-r-m-note">${s.metricB.note}</div>
+                    </div>
+                  </div>
+                  <div class="ai-r-note">${s.note}</div>
+                  <div class="ai-r-foot"><b>这一步还在解决：</b>${s.foot}</div>
+                  <div class="ai-r-archive">ARCHIVE · NO.${s.n} · ${s.en.toUpperCase()}</div>
+                </div>
+              </div>
+            </div>
+          </div>`;
+        return row;
+      };
+
+      SITE_CONFIG.aiProjects.forEach((s, i) => {
+        aiArchive.appendChild(buildAiRow(s, i));
+      });
+
+      aiArchive.addEventListener('click', e => {
+        const head = e.target.closest('.ai-arc-head');
+        if (!head) return;
+        const row = head.parentElement;
+        const wasOpen = row.classList.contains('open');
+
+        aiArchive.querySelectorAll('.ai-arc-row.open').forEach(r => {
+          r.classList.remove('open');
+          r.querySelector('.ai-arc-head').setAttribute('aria-expanded', 'false');
+        });
+        aiArchive.querySelectorAll('.ai-arc-toggle-text').forEach(t => t.textContent = '展开');
+
+        if (!wasOpen) {
+          row.classList.add('open');
+          head.setAttribute('aria-expanded', 'true');
+          head.querySelector('.ai-arc-toggle-text').textContent = '收起';
+          setTimeout(() => {
+            const r = row.getBoundingClientRect();
+            if (r.top < 80 || r.bottom > window.innerHeight - 80) {
+              window.scrollTo({ top: window.scrollY + r.top - 80, behavior: 'smooth' });
+            }
+          }, 350);
+        }
+      });
+    }
+
     // IP 作品
     if (SITE_CONFIG.ipShowcase) {
       const ips = SITE_CONFIG.ipShowcase;
@@ -2054,19 +2473,86 @@
       if (e.key === 'ArrowRight' && courseModal.classList.contains('open')) nextCourseModal();
     });
 
-    // 滚动入场（含 stagger 子项 + 数字计数）
+    // 滚动入场：reveal 淡入只播一次
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (!e.isIntersecting) return;
-        const t = e.target;
-        t.classList.add('in');
-        if (t.classList.contains('stats')) {
-          t.querySelectorAll('.count').forEach(runCount);
-        }
-        io.unobserve(t);
+        e.target.classList.add('in');
+        io.unobserve(e.target);
       });
     }, { threshold: 0.12 });
     $$('.reveal, .reveal-item').forEach(el => io.observe(el));
+
+    // Stats 数字：每次进入视口都重播
+    const heroStats = $('#heroStats');
+    const countIO = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.querySelectorAll('.count').forEach(runCount);
+        }
+      });
+    }, { threshold: 0.35 });
+    if (heroStats) countIO.observe(heroStats);
+
+    // Hero 持续动效：滚动视差离场 + 鼠标 3D tilt（尊重 prefers-reduced-motion）
+    (function heroMotion(){
+      const heroEl = document.querySelector('.hero');
+      if (!heroEl) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const heroText = heroEl.querySelector('.hero-text');
+      const heroVisual = heroEl.querySelector('.hero-visual');
+      const heroPhoto = heroEl.querySelector('.hero-photo');
+      let ticking = false;
+      const onScroll = () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          const y = window.scrollY || 0;
+          const h = heroEl.offsetHeight || 1;
+          const p = Math.min(y / h, 1);
+          if (heroText) heroText.style.transform = `translateY(${(-y * 0.12).toFixed(1)}px)`;
+          if (heroVisual) heroVisual.style.transform = `translateY(${(y * 0.05).toFixed(1)}px)`;
+          // 滚过 60% 才淡出，顶部交给 reveal 入场控制
+          heroEl.style.opacity = p < 0.6 ? '' : String(Math.max(0, 1 - (p - 0.6) / 0.4));
+          ticking = false;
+        });
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+      // 鼠标 3D tilt（仅精确指针设备）
+      if (heroPhoto && window.matchMedia('(pointer: fine)').matches) {
+        const onMove = (e) => {
+          const r = heroPhoto.getBoundingClientRect();
+          const dx = (e.clientX - (r.left + r.width / 2)) / (r.width / 2);
+          const dy = (e.clientY - (r.top + r.height / 2)) / (r.height / 2);
+          heroPhoto.style.transform = `rotateY(${(dx * 4).toFixed(2)}deg) rotateX(${(-dy * 4).toFixed(2)}deg)`;
+        };
+        const reset = () => { heroPhoto.style.transform = ''; };
+        heroEl.addEventListener('mousemove', onMove);
+        heroEl.addEventListener('mouseleave', reset);
+      }
+    })();
+
+    // 工作旅程：时间轴随滚动自上而下绘制
+    (function journeyLine(){
+      const jEl = document.querySelector('.journey');
+      if (!jEl) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { jEl.style.setProperty('--line', '1'); return; }
+      let ticking = false;
+      const update = () => {
+        ticking = false;
+        const r = jEl.getBoundingClientRect();
+        const vh = window.innerHeight || document.documentElement.clientHeight;
+        const start = vh * 0.85;   // 顶部到达视口 85% 处开始绘制
+        const end = vh * 0.30;     // 顶部到达视口 30% 处绘制完成
+        const p = Math.min(Math.max((start - r.top) / (start - end), 0), 1);
+        jEl.style.setProperty('--line', p.toFixed(3));
+      };
+      const onScroll = () => { if (ticking) return; ticking = true; requestAnimationFrame(update); };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll, { passive: true });
+      update();
+    })();
 
     function runCount(el) {
       const target = parseInt(el.dataset.target, 10) || 0;
@@ -2079,6 +2565,61 @@
         else el.textContent = target;
       })(performance.now());
     }
+
+    // Hero 副标题：循环打字机（尊重 reduced-motion）
+    (function typewriter(){
+      const el = $('#typewriter');
+      if (!el) return;
+      const phrases = [
+        '知识产品架构师 · 转化链路设计者',
+        '课程研发 · 销转 SOP 设计师',
+        'AI 产品规划 · 团队复制者'
+      ];
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        el.innerHTML = phrases[0];
+        return;
+      }
+      let pi = 0, i = 0, isDeleting = false;
+      const TYPE = 75, ERASE = 35, PAUSE = 2200;
+      function tick() {
+        const phrase = phrases[pi];
+        el.innerHTML = phrase.slice(0, i);
+        if (!isDeleting && i < phrase.length) {
+          i++;
+          setTimeout(tick, TYPE + (Math.random() * 30));
+        } else if (isDeleting && i > 0) {
+          i--;
+          setTimeout(tick, ERASE);
+        } else if (!isDeleting && i === phrase.length) {
+          isDeleting = true;
+          setTimeout(tick, PAUSE);
+        } else {
+          isDeleting = false;
+          pi = (pi + 1) % phrases.length;
+          setTimeout(tick, TYPE);
+        }
+      }
+      tick();
+    })();
+
+    // 顶部阅读进度条
+    (function readProgress(){
+      const bar = $('#readProgress');
+      if (!bar) return;
+      const doc = document.documentElement;
+      let ticking = false;
+      const update = () => {
+        const scrollTop = window.scrollY || doc.scrollTop || 0;
+        const max = (doc.scrollHeight || 1) - (doc.clientHeight || 1);
+        const pct = max <= 0 ? 0 : Math.min(100, Math.max(0, (scrollTop / max) * 100));
+        bar.style.width = pct.toFixed(2) + '%';
+        bar.setAttribute('aria-valuenow', Math.round(pct));
+        ticking = false;
+      };
+      window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+      window.addEventListener('resize', update);
+      update();
+    })();
 
     // 顶部导航：当前板块高亮（scroll-spy）
     const navLinks = Array.from($$('.topbar-nav a, .mobile-nav a'));
@@ -2121,6 +2662,7 @@
       { id: 'homeAbout', label: '关于我', target: '#about', keys: ['关于我','关于','个人','简介','我是谁','背景','个人信息','生活照','教育经历','工作背景','线上摄影','售前讲师','课程研发','内容表达','独立设计','中老年','信任','说服','转化率'] },
       { id: 'homeCapabilities', label: '我的核心能力', target: '#caps', keys: ['核心能力','能力','技能','擅长','我能做什么','实力','本领','课程研发','课件制作','售前转化','内容创作','抖音','IP打造','用户教育','知识变现','三差模型','用户理解','持续迭代','商业闭环','选题','文案','口播','直播','切片','引流','销转','训练营','VIP','小课','摄影入门','约拍','全链路','创业课','摄影课','认知冲突','付款','学会','不同','高客单价转化','冷启动','团队复制','ROI优化'] },
       { id: 'homeCourse', label: '课程研发设计展示', target: '#course', keys: ['课程设计','课程研发','课程','课件','教学','课程结构','公开课','讲课','培训','内容结构','知识产品','TK公开课','三差模型','直播切片','创业类','兴趣类','课程对比','公域引流','私域销转','VIP小课','口播视频录制','摄影公开课','摄影入门训练营','约拍小灶','全链路课程研发','打开课件','翻书','逻辑图','课程逻辑','研发思路'] },
+      { id: 'homeAiProjects', label: 'AI 产品规划', target: '#ai-projects', keys: ['AI 产品','AI','人工智能','智能体','知识库','知识产品','电影审美','电影','审美手册','AI 化','产品规划','6 步','六步','档案夹','定义','调研','用户','算账','分阶段','治理','退出策略','红线条','RAG','prompt','多模态','豆包','Adobe Indigo','comp-critic-agent','电影镜头','镜头审美','AI 落地方案','智能体方案'] },
       { id: 'homeIpShowcase', label: 'IP作品展示', target: '#ip', keys: ['ip作品','ip','作品','抖音','短视频','数据','对比','案例','成绩','爆款','原创','口播','长视频','播放量','点赞','收藏','50W','7000','500','精准流量','矩阵账号','收藏点赞比','90%','渔子教育','独立策划','剪辑','分发','运营团队','摄影入门教学','数据最高','抖音视频数据'] },
       { id: 'homeJourney', label: '我的工作旅程', target: '#journey', keys: ['工作旅程','旅程','经历','履历','简历','职业发展','时间线','故事','成长','工作','峰行跨境','长沙','跨行业','快速学习','矩阵账号','前司','渔子教育'] },
       { id: 'homeContact', label: '联系方式', target: '#contact', keys: ['联系','联系方式','微信','邮箱','加我','合作','联系我','沟通','商务','扫码','添加','lushulin98@qq.com'] }
@@ -2132,6 +2674,12 @@
       const txt = [p.label, p.videoTitle, gatherText(p.blocks)].join(' ');
       SEARCH_INDEX.push({ type: '课程', title: p.label, snippet: txt.slice(0, 200), target: '#course', allText: txt.toLowerCase() });
     });
+    if (Array.isArray(SITE_CONFIG.aiProjects)) {
+      SITE_CONFIG.aiProjects.forEach(s => {
+        const apText = [s.n, s.t, s.tag, s.input, s.did, s.output, s.note, s.foot, s.metricA.lab, s.metricB.lab].join(' ');
+        SEARCH_INDEX.push({ type: 'AI', title: s.n + ' · ' + s.t, snippet: (s.tag || '') + ' · ' + (s.note || '').slice(0, 80), target: '#ai-projects', allText: apText.toLowerCase() });
+      });
+    }
     if (SITE_CONFIG.ipShowcase) {
       const ips = SITE_CONFIG.ipShowcase;
       const ipText = [ips.compareCaption, gatherText(ips.videos)].join(' ');
@@ -2171,7 +2719,7 @@
       { q: '三差模型', label: '三差模型', type: '课程' },
       { q: '抖音视频数据', label: '抖音视频数据', type: 'IP' },
       { q: '课程研发', label: '课程研发', type: '课程' },
-      { q: '关于我', label: '关于我', type: '关于' }
+      { q: 'AI产品规划', label: 'AI产品规划', type: 'AI' }
     ];
     function esc(s) { return s.replace(/[&<>]/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[m])); }
     function openSearch() {
@@ -2184,7 +2732,7 @@
       activeIdx = -1;
       if (!q) {
         // 空输入时展示热门搜索对应的内容入口
-        const featured = ['高客单价转化','三差模型','抖音视频数据','课程研发','关于我'];
+        const featured = ['高客单价转化','三差模型','抖音视频数据','课程研发','AI产品规划'];
         curList = featured.map(keyword => {
           const hits = SEARCH_INDEX.map(it => ({ it, score: scoreHit(it, keyword) })).filter(x => x.score > 0).sort((a, b) => b.score - a.score);
           const best = hits[0];

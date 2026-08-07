@@ -1,8 +1,0 @@
-.gitignore
-.nojekyll
-.workbuddy/convert_webp.py
-.workbuddy/memory/2026-07-27.md
-.workbuddy/memory/2026-07-28.md
-.workbuddy/memory/2026-07-29.md
-.workbuddy/memory/2026-07-31.md
-.workbuddy/memory/2026-08-01.md
