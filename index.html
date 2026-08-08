@@ -23,7 +23,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter+Tight:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@300;400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter+Tight:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@300;400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
   <style>
     /* ============================================
        设计预览 v2 · 新派编辑刊物 (Modern Editorial)
@@ -1802,8 +1802,6 @@
       .j-item { grid-template-columns: 50px 1fr; gap: 24px; }
       .j-dot { left: 46px; }
       .footer { flex-direction: column; gap: 8px; padding: 32px 20px; text-align: center; }
-    }
-    @media (max-width: 960px) {
       .chain-gallery { grid-template-columns: 1fr; }
       .chain-img { height: 220px; }
       .course-modal-panel { grid-template-columns: 1fr; }
@@ -1963,7 +1961,7 @@
         <div class="hero-eyebrow">独立课程开发者 · 转化策略师</div>
         <h1 class="hero-name">陆姝霖<span class="mark-dot"></span></h1>
         <div class="hero-role" id="titleRole"><span id="typewriter"></span><span class="type-cursor" aria-hidden="true"></span></div>
-        <p class="hero-desc" id="titleSubtitle">五年知识付费课程交付，单场转化最高 18%（行业均值 5%）。<br>带团队把讲师能力拆成可复制 SOP，跨行摄影从零跑通 IP 冷启动。<br>擅长把复杂产品，拆成零基础用户也能听懂的内容结构。</p>
+        <p class="hero-desc" id="titleSubtitle"></p>
         <div class="hero-cta-row">
           <a href="#contact" class="cta-primary">
             联系我
@@ -2129,6 +2127,9 @@
     /* === 渲染：复用 SITE_CONFIG === */
     const $ = s => document.querySelector(s);
     const $$ = s => document.querySelectorAll(s);
+
+    // Hero 副标题（唯一数据源：data.js 的 subtitle）
+    if (SITE_CONFIG.subtitle) $('#titleSubtitle').innerHTML = SITE_CONFIG.subtitle;
 
     // Hero stats
     if (SITE_CONFIG.heroStats) {
