@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>陆姝霖·个人网站</title>
-  <meta name="description" content="陆姝霖 · 知识产品架构师。5 年知识付费与转化经验，独立设计 11 节原创课程、规划 AI 知识库 + 智能体落地方案。近期探索将知识资产转化为 AI 产品（知识库 + 智能体）。">
-  <meta name="keywords" content="陆姝霖,知识付费,课程研发,转化链路,AI 产品规划,知识库,智能体,内容设计,用户教育,售前讲师">
+  <meta name="description" content="陆姝霖 · 知识产品架构师。5 年知识付费与转化经验，独立设计 11 节原创课程、规划 AI 知识库 + 智能体落地方案，并已做出「摄影师 AI 工具库 1.0」可演示原型。">
+  <meta name="keywords" content="陆姝霖,知识付费,课程研发,转化链路,AI 产品规划,知识库,智能体,AI 工具库,POC,原型,AI 产品经理,内容设计,用户教育,售前讲师">
 
   <!-- Open Graph / 社交分享 -->
   <meta property="og:type" content="website">
@@ -43,6 +43,9 @@
       --matte: #ede8de;       /* 画框衬边 · 暖米色 */
       --accent: #d93544;      /* 朱红 · 当代杂志标志色 */
       --accent-soft: rgba(217, 53, 68, 0.08);
+      --paper: #fffdf8;       /* 档案夹纸面（.ai- 系列背景） */
+      --paper-warm: #faf5ec;  /* 档案夹展开态暖纸面 */
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);  /* 全站统一缓动 */
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -1022,6 +1025,22 @@
       font-size: 12px;
     }
 
+    /* POC 截图弹层专属：面板加宽、图片加大、点击图片放大（复用 .course-modal 骨架） */
+    #pocModal .course-modal-panel {
+      width: min(1180px, 96vw);
+      grid-template-columns: 1.6fr 1fr;
+    }
+    #pocModal .course-modal-img {
+      position: relative; overflow: auto; cursor: zoom-in;
+      padding: 28px;
+    }
+    #pocModal .course-modal-img img {
+      max-width: 100%; max-height: 84vh; object-fit: contain;
+      transition: width .35s var(--ease);
+    }
+    #pocModal .course-modal-img.zoomed { cursor: zoom-out; }
+    #pocModal .course-modal-img.zoomed img { max-height: none; }
+
     /* 课程对比：表格 */
     .cmp-wrap {
       border: 1px solid var(--ink);
@@ -1323,6 +1342,77 @@
       font-size:9px;letter-spacing:.16em;color:var(--ink-3);
       border:1px solid var(--hair-strong);padding:3px 6px;text-transform:uppercase;
       margin-top:6px}
+
+    /* AI 板块子标题（仿课程研发 .course-item-head：Fraunces 朱红序号 + Noto Serif 标题 + Fraunces italic 英文右对齐） */
+    .ai-subhead{display:flex;align-items:baseline;gap:24px;padding:48px 0 28px;border-top:1px solid var(--hair)}
+    .ai-subhead--first{border-top:none;padding-top:0}
+    .ai-subhead-num{font-family:"Fraunces",serif;font-weight:300;font-style:italic;font-size:16px;
+      color:var(--accent);letter-spacing:.05em;font-feature-settings:"tnum";white-space:nowrap}
+    .ai-subhead-title{font-family:"Noto Serif SC",serif;font-size:24px;font-weight:500;
+      color:var(--ink);letter-spacing:.02em;line-height:1.3}
+    .ai-subhead-en{font-family:"Fraunces",serif;font-style:italic;font-size:12px;
+      color:var(--ink-3);letter-spacing:.08em;text-transform:uppercase;margin-left:auto;
+      white-space:nowrap}
+
+    /* POC 项目卡（与档案夹同语言：Fraunces 序号 / mono 小标 / matte 衬边 + frame 画框 / 朱红描边标签） */
+    .ai-poc{margin-top:0;border:1px solid var(--frame);background:var(--paper);overflow:hidden}
+    .ai-poc-head{display:grid;grid-template-columns:88px 1fr auto;gap:24px;align-items:center;
+      padding:22px 24px 20px;border-bottom:1px solid var(--hair)}
+    .ai-poc-idx{font-family:"Fraunces",serif;font-weight:300;font-size:24px;line-height:1;
+      letter-spacing:-.01em;color:var(--accent);font-feature-settings:"tnum";text-align:right}
+    .ai-poc-titles{display:flex;flex-direction:column;gap:4px;min-width:0}
+    .ai-poc-title{font-family:"Noto Serif SC",serif;font-weight:500;font-size:21px;
+      line-height:1.3;color:var(--ink)}
+    .ai-poc-en{font-family:"Fraunces",serif;font-style:italic;font-weight:300;font-size:12px;
+      color:var(--ink-3);letter-spacing:.05em}
+    .ai-poc-tag{font-family:"Inter Tight",sans-serif;font-size:11px;font-weight:600;
+      letter-spacing:.15em;text-transform:uppercase;color:var(--accent);
+      padding:6px 12px;border:1px solid var(--accent);border-radius:0;white-space:nowrap}
+    .ai-poc-intro{font-family:"Fraunces",serif;font-style:italic;font-weight:400;font-size:15px;
+      line-height:1.7;color:var(--ink-2);padding:16px 24px 18px;
+      border-bottom:1px dashed var(--hair);letter-spacing:.02em}
+    .ai-poc-feats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:20px 24px}
+    .ai-poc-feat{background:var(--matte);border:1px solid var(--frame);border-radius:2px;
+      padding:16px 15px 15px;display:flex;flex-direction:column;gap:8px;
+      transition:border-color .3s var(--ease),transform .3s var(--ease)}
+    .ai-poc-feat:hover{border-color:var(--accent);transform:translateY(-2px)}
+    .ai-poc-f-num{font-family:"JetBrains Mono","SF Mono",monospace;font-size:10px;
+      font-weight:500;letter-spacing:.14em;color:var(--accent);text-transform:uppercase}
+    .ai-poc-f-title{font-family:"Noto Serif SC",serif;font-weight:500;font-size:15.5px;
+      line-height:1.35;color:var(--ink)}
+    .ai-poc-f-desc{font-family:"Inter Tight","Noto Sans SC",sans-serif;font-size:12.5px;
+      line-height:1.6;color:var(--ink-2)}
+    .ai-poc-bottom{display:grid;grid-template-columns:1.35fr 1fr;gap:0;border-top:1px dashed var(--hair)}
+    .ai-poc-col{padding:20px 24px 24px}
+    .ai-poc-col + .ai-poc-col{border-left:1px dashed var(--hair)}
+    .ai-poc-col-title{font-family:"JetBrains Mono","SF Mono",monospace;font-size:10px;
+      font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);
+      padding-top:4px;border-top:1px solid var(--accent);display:inline-block;padding-right:8px}
+    .ai-poc-cons-row{display:grid;grid-template-columns:64px 1fr;gap:14px;align-items:start;margin-top:13px}
+    .ai-poc-cons-lab{font-family:"Inter Tight",sans-serif;font-size:11px;font-weight:600;
+      color:var(--ink-2);letter-spacing:.04em;padding-top:2px}
+    .ai-poc-cons-val{font-size:13.5px;line-height:1.65;color:var(--ink-2)}
+    .ai-poc-cons-val b{color:var(--ink);font-weight:600}
+    .ai-poc-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+    .ai-poc-chip{border:1px solid var(--hair-strong);background:var(--surface);
+      border-radius:2px;padding:6px 11px;font-family:"Inter Tight",sans-serif;
+      font-size:12px;color:var(--ink-2);letter-spacing:.02em;
+      transition:border-color .3s var(--ease),color .3s var(--ease)}
+    .ai-poc-chip:hover{border-color:var(--accent);color:var(--accent)}
+    .ai-poc-shots{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding:0 24px 22px}
+    .ai-poc-shot{display:flex;flex-direction:column;gap:10px}
+    .ai-poc-shot img{width:100%;height:auto;display:block;border:1px solid var(--frame);
+      border-radius:2px;background:var(--matte);cursor:zoom-in;transition:transform .35s var(--ease)}
+    .ai-poc-shot img:hover{transform:scale(1.01)}
+    .ai-poc-shot-cap{display:flex;flex-direction:column;gap:4px;padding:0 2px}
+    .ai-poc-shot-num{font-family:"JetBrains Mono","SF Mono",monospace;font-size:10px;
+      letter-spacing:.14em;color:var(--accent);text-transform:uppercase;font-weight:500}
+    .ai-poc-shot-cap p{font-size:12.5px;line-height:1.6;color:var(--ink-2)}
+    .ai-poc-shots-foot{grid-column:1/-1;font-family:"Inter Tight",sans-serif;font-size:11px;
+      color:var(--ink-3);padding-top:6px;border-top:1px dashed var(--hair);letter-spacing:.02em}
+    .ai-poc-foot{border-top:1px dashed var(--hair);padding:14px 24px 20px;
+      font-family:"Fraunces",serif;font-style:italic;font-weight:400;font-size:14px;
+      color:var(--ink-3);letter-spacing:.02em;line-height:1.7}
 
     /* ============================================
        工作旅程 —— 时间线
@@ -1806,6 +1896,8 @@
       .chain-img { height: 220px; }
       .course-modal-panel { grid-template-columns: 1fr; }
       .course-modal-img { border-right: none; border-bottom: 1px solid var(--hair); }
+      #pocModal .course-modal-img img { max-height: 56vh; }
+      #pocModal .course-modal-img { padding: 16px; }
       .ip-work-card { grid-template-columns: 1fr; }
       .ip-work-img { min-height: 240px; }
       .ip-work-body { border-left: none; border-top: 1px solid var(--hair); padding: 28px; }
@@ -1825,6 +1917,20 @@
       .ai-r-metric{grid-template-columns:1fr}
       .ai-r-note{font-size:15px}
       .ai-intro-row{font-size:12px}
+      .ai-subhead{padding:32px 0 20px;gap:14px;flex-wrap:wrap}
+      .ai-subhead-title{font-size:18px}
+      .ai-subhead-en{margin-left:0;font-size:11px}
+      .ai-poc-head{grid-template-columns:46px 1fr;gap:12px;padding:16px 16px 14px}
+      .ai-poc-idx{font-size:19px}
+      .ai-poc-tag{grid-column:2;justify-self:start}
+      .ai-poc-title{font-size:18px}
+      .ai-poc-intro{font-size:14px;padding:14px 16px 16px}
+      .ai-poc-feats{grid-template-columns:1fr;padding:16px}
+      .ai-poc-bottom{grid-template-columns:1fr}
+      .ai-poc-col + .ai-poc-col{border-left:none;border-top:1px dashed var(--hair)}
+      .ai-poc-col{padding:18px 16px 20px}
+      .ai-poc-shots{grid-template-columns:1fr;padding:0 16px 18px}
+      .ai-poc-foot{padding:14px 16px 18px;font-size:13px}
     }
 
     /* ============================================
@@ -1925,6 +2031,18 @@
     </div>
   </div>
 
+  <!-- POC 截图弹层（复用课程研发弹层样式与交互） -->
+  <div class="course-modal" id="pocModal" aria-hidden="true">
+    <button class="course-modal-close" id="pocModalClose" aria-label="关闭">×</button>
+    <div class="course-modal-panel">
+      <button class="course-modal-next" id="pocModalNext" aria-label="下一张">下一页 →</button>
+      <div class="course-modal-img">
+        <img src="" alt="" id="pocModalImg">
+      </div>
+      <div class="course-modal-body" id="pocModalBody"></div>
+    </div>
+  </div>
+
   <!-- 搜索浮层 -->
   <div class="search-overlay" id="searchOverlay" aria-hidden="true">
     <div class="search-panel">
@@ -1933,7 +2051,7 @@
       </button>
       <div class="search-input-wrap">
         <span class="search-ico">🔍</span>
-        <input type="text" id="searchInput" placeholder="搜索课程、能力、IP、工作经历…" autocomplete="off">
+        <input type="text" id="searchInput" placeholder="搜索课程、能力、AI、IP、工作经历…" autocomplete="off">
       </div>
       <div class="search-results" id="searchResults"></div>
       <div class="search-footer">
@@ -1943,7 +2061,7 @@
           <button class="search-tag" data-q="三差模型">三差模型</button>
           <button class="search-tag" data-q="抖音视频数据">抖音视频数据</button>
           <button class="search-tag" data-q="课程研发">课程研发</button>
-          <button class="search-tag" data-q="AI产品规划">AI产品规划</button>
+          <button class="search-tag" data-q="摄影师AI工具库">摄影师AI工具库</button>
         </div>
       </div>
     </div>
@@ -2054,7 +2172,21 @@
 
     <p class="ai-intro-row">独立规划 · 产品负责人 · <b>11 章</b> / <b>约万字</b> / 覆盖 <b>调研 · 测算 · 选型 · 退出策略</b></p>
 
+    <!-- 子块 01：方案 · 6 步框架档案夹 -->
+    <div class="ai-subhead ai-subhead--first">
+      <span class="ai-subhead-num">01 · Strategy</span>
+      <h3 class="ai-subhead-title">方案 · 6 步框架档案夹</h3>
+      <span class="ai-subhead-en">How to think</span>
+    </div>
     <div class="ai-archive" id="aiArchive" aria-label="六章方案档案夹"></div>
+
+    <!-- 子块 02：落地 · POC 项目卡 -->
+    <div class="ai-subhead">
+      <span class="ai-subhead-num">02 · Proof of Concept</span>
+      <h3 class="ai-subhead-title">落地 · POC 项目卡</h3>
+      <span class="ai-subhead-en">Build &amp; demo</span>
+    </div>
+    <div class="ai-poc" id="aiPoc"></div>
   </section>
 
   <!-- IP 作品 -->
@@ -2389,6 +2521,62 @@
       });
     }
 
+    // AI 落地 POC —— 摄影师 AI 工具库 1.0 项目卡
+    const aiPocEl = document.getElementById('aiPoc');
+    if (SITE_CONFIG.aiToolbox && aiPocEl) {
+      const tb = SITE_CONFIG.aiToolbox;
+      aiPocEl.innerHTML = `
+        <div class="ai-poc-head">
+          <div class="ai-poc-idx">POC-01</div>
+          <div class="ai-poc-titles">
+            <h3 class="ai-poc-title">${tb.title}</h3>
+            <div class="ai-poc-en">${tb.en}</div>
+          </div>
+          <span class="ai-poc-tag">${tb.tag}</span>
+        </div>
+        <p class="ai-poc-intro">${tb.intro}</p>
+
+        <div class="ai-poc-feats">
+          ${(tb.feats || []).map(f => `
+            <div class="ai-poc-feat">
+              <span class="ai-poc-f-num">${f.num}</span>
+              <span class="ai-poc-f-title">${f.title}</span>
+              <span class="ai-poc-f-desc">${f.desc}</span>
+            </div>`).join('')}
+        </div>
+
+        <div class="ai-poc-bottom">
+          <div class="ai-poc-col">
+            <span class="ai-poc-col-title">落地约束</span>
+            ${(tb.cons || []).map(c => `
+              <div class="ai-poc-cons-row">
+                <span class="ai-poc-cons-lab">${c.lab}</span>
+                <span class="ai-poc-cons-val">${c.val}</span>
+              </div>`).join('')}
+          </div>
+          <div class="ai-poc-col">
+            <span class="ai-poc-col-title">核心产出</span>
+            <div class="ai-poc-chips">
+              ${(tb.outputs || []).map(o => `<span class="ai-poc-chip">${o}</span>`).join('')}
+            </div>
+          </div>
+        </div>
+
+        <div class="ai-poc-shots">
+          ${(tb.shots || []).map((s, i) => `
+            <div class="ai-poc-shot" data-index="${i}">
+              <img src="${s.src}" alt="${s.title}" loading="lazy">
+              <div class="ai-poc-shot-cap">
+                <span class="ai-poc-shot-num">${s.num}</span>
+                <p>${s.title} · ${s.desc}</p>
+              </div>
+            </div>`).join('')}
+          ${tb.shotsNote ? `<div class="ai-poc-shots-foot">${tb.shotsNote}</div>` : ''}
+        </div>
+
+        <div class="ai-poc-foot">${tb.foot}</div>`;
+    }
+
     // IP 作品
     if (SITE_CONFIG.ipShowcase) {
       const ips = SITE_CONFIG.ipShowcase;
@@ -2472,6 +2660,74 @@
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape' && courseModal.classList.contains('open')) closeCourseModal();
       if (e.key === 'ArrowRight' && courseModal.classList.contains('open')) nextCourseModal();
+    });
+
+    // POC 截图弹层（复用课程研发弹层交互：关闭 × / 下一页循环 / 遮罩关闭 / ESC / 方向键）
+    const pocModal = $('#pocModal'), pocModalImg = $('#pocModalImg'), pocModalBody = $('#pocModalBody'), pocModalClose = $('#pocModalClose'), pocModalNext = $('#pocModalNext');
+    const pocImgWrap = pocModalImg ? pocModalImg.closest('.course-modal-img') : null;
+    let currentPocIdx = 0;
+    function renderPocModal(idx) {
+      const tb = SITE_CONFIG.aiToolbox;
+      const shots = (tb && tb.shots) || [];
+      const s = shots[idx];
+      if (!s) return;
+      currentPocIdx = idx;
+      pocModalImg.src = s.src;
+      pocModalImg.alt = s.title;
+      pocModalImg.style.width = '';
+      pocModalImg.style.height = '';
+      if (pocImgWrap) pocImgWrap.classList.remove('zoomed');
+      pocModalBody.innerHTML = `
+        <div class="chain-step">DEMO ${String(idx + 1).padStart(2, '0')} / ${String(shots.length).padStart(2, '0')}</div>
+        <h3 class="chain-title">${s.title}</h3>
+        <p style="font-size:14px;line-height:1.75;color:var(--ink-2)">${s.desc}</p>
+        <p style="font-size:11px;line-height:1.6;color:var(--ink-3);letter-spacing:.04em;margin-top:14px">点击图片放大 · 再次点击缩小</p>
+        ${tb.shotsNote ? `<p style="font-size:11px;line-height:1.6;color:var(--ink-3);margin-top:16px;border-top:1px dashed var(--hair);padding-top:12px">${tb.shotsNote}</p>` : ''}
+      `;
+    }
+    function openPocModal(idx) {
+      renderPocModal(idx);
+      pocModal.classList.add('open');
+      pocModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closePocModal() {
+      pocModal.classList.remove('open');
+      pocModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+    function nextPocModal() {
+      const tb = SITE_CONFIG.aiToolbox;
+      const shots = (tb && tb.shots) || [];
+      if (!shots.length) return;
+      renderPocModal((currentPocIdx + 1) % shots.length);
+    }
+    $('#aiPoc')?.addEventListener('click', e => {
+      const shot = e.target.closest('.ai-poc-shot');
+      if (!shot) return;
+      e.preventDefault();
+      openPocModal(parseInt(shot.dataset.index, 10) || 0);
+    });
+    if (pocModalNext) pocModalNext.addEventListener('click', nextPocModal);
+    if (pocModalClose) pocModalClose.addEventListener('click', closePocModal);
+    if (pocModalImg) {
+      pocModalImg.addEventListener('click', () => {
+        const wrap = pocModalImg.closest('.course-modal-img');
+        if (!wrap) return;
+        const isZoomed = wrap.classList.toggle('zoomed');
+        if (isZoomed && pocModalImg.naturalWidth) {
+          pocModalImg.style.width = (pocModalImg.naturalWidth * 2) + 'px';
+          pocModalImg.style.height = 'auto';
+        } else {
+          pocModalImg.style.width = '';
+          pocModalImg.style.height = '';
+        }
+      });
+    }
+    pocModal.addEventListener('click', e => { if (e.target === pocModal) closePocModal(); });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && pocModal.classList.contains('open')) closePocModal();
+      if (e.key === 'ArrowRight' && pocModal.classList.contains('open')) nextPocModal();
     });
 
     // 滚动入场：reveal 淡入只播一次
@@ -2574,7 +2830,7 @@
       const phrases = [
         '知识产品架构师 · 转化链路设计者',
         '课程研发 · 销转 SOP 设计师',
-        'AI 产品规划 · 团队复制者'
+        'AI 产品规划 · 方案到 POC'
       ];
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         el.innerHTML = phrases[0];
@@ -2663,7 +2919,7 @@
       { id: 'homeAbout', label: '关于我', target: '#about', keys: ['关于我','关于','个人','简介','我是谁','背景','个人信息','生活照','教育经历','工作背景','线上摄影','售前讲师','课程研发','内容表达','独立设计','中老年','信任','说服','转化率'] },
       { id: 'homeCapabilities', label: '我的核心能力', target: '#caps', keys: ['核心能力','能力','技能','擅长','我能做什么','实力','本领','课程研发','课件制作','售前转化','内容创作','抖音','IP打造','用户教育','知识变现','三差模型','用户理解','持续迭代','商业闭环','选题','文案','口播','直播','切片','引流','销转','训练营','VIP','小课','摄影入门','约拍','全链路','创业课','摄影课','认知冲突','付款','学会','不同','高客单价转化','冷启动','团队复制','ROI优化'] },
       { id: 'homeCourse', label: '课程研发设计展示', target: '#course', keys: ['课程设计','课程研发','课程','课件','教学','课程结构','公开课','讲课','培训','内容结构','知识产品','TK公开课','三差模型','直播切片','创业类','兴趣类','课程对比','公域引流','私域销转','VIP小课','口播视频录制','摄影公开课','摄影入门训练营','约拍小灶','全链路课程研发','打开课件','翻书','逻辑图','课程逻辑','研发思路'] },
-      { id: 'homeAiProjects', label: 'AI 产品规划', target: '#ai-projects', keys: ['AI 产品','AI','人工智能','智能体','知识库','知识产品','电影审美','电影','审美手册','AI 化','产品规划','6 步','六步','档案夹','定义','调研','用户','算账','分阶段','治理','退出策略','红线条','RAG','prompt','多模态','豆包','Adobe Indigo','comp-critic-agent','电影镜头','镜头审美','AI 落地方案','智能体方案'] },
+      { id: 'homeAiProjects', label: 'AI 产品规划', target: '#ai-projects', keys: ['AI 产品','AI','人工智能','智能体','知识库','知识产品','电影审美','电影','审美手册','AI 化','产品规划','6 步','六步','档案夹','定义','调研','用户','算账','分阶段','治理','退出策略','红线条','RAG','prompt','多模态','豆包','Adobe Indigo','comp-critic-agent','电影镜头','镜头审美','AI 落地方案','智能体方案','摄影师AI工具库','摄影师 AI 工具库','AI 工具库','工具库','POC','原型','AI 点评','点评','学习规划','学习路径','拍摄脚本','拍摄方案','16 类风格','16类风格','成本测算','Prompt 库','Prompt库','需求分层','二期','业务演示','业务演示原型'] },
       { id: 'homeIpShowcase', label: 'IP作品展示', target: '#ip', keys: ['ip作品','ip','作品','抖音','短视频','数据','对比','案例','成绩','爆款','原创','口播','长视频','播放量','点赞','收藏','50W','7000','500','精准流量','矩阵账号','收藏点赞比','90%','渔子教育','独立策划','剪辑','分发','运营团队','摄影入门教学','数据最高','抖音视频数据'] },
       { id: 'homeJourney', label: '我的工作旅程', target: '#journey', keys: ['工作旅程','旅程','经历','履历','简历','职业发展','时间线','故事','成长','工作','峰行跨境','长沙','跨行业','快速学习','矩阵账号','前司','渔子教育'] },
       { id: 'homeContact', label: '联系方式', target: '#contact', keys: ['联系','联系方式','微信','邮箱','加我','合作','联系我','沟通','商务','扫码','添加','lushulin98@qq.com'] }
@@ -2680,6 +2936,11 @@
         const apText = [s.n, s.t, s.tag, s.input, s.did, s.output, s.note, s.foot, s.metricA.lab, s.metricB.lab].join(' ');
         SEARCH_INDEX.push({ type: 'AI', title: s.n + ' · ' + s.t, snippet: (s.tag || '') + ' · ' + (s.note || '').slice(0, 80), target: '#ai-projects', allText: apText.toLowerCase() });
       });
+    }
+    if (SITE_CONFIG.aiToolbox) {
+      const tb = SITE_CONFIG.aiToolbox;
+      const tbText = [tb.title, tb.en, tb.tag, tb.intro, gatherText(tb.feats), gatherText(tb.cons), gatherText(tb.outputs)].join(' ');
+      SEARCH_INDEX.push({ type: 'AI', title: tb.title + ' · POC', snippet: '三大功能：AI 点评 / 学习规划 / 拍摄脚本 · 离线可演示', target: '#ai-projects', allText: tbText.toLowerCase() });
     }
     if (SITE_CONFIG.ipShowcase) {
       const ips = SITE_CONFIG.ipShowcase;
