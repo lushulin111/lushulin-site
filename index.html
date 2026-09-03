@@ -1646,6 +1646,28 @@
     .journey .j-item.reveal-item.in { animation: jIn .7s cubic-bezier(0.16,1,0.3,1) both; animation-delay: calc(var(--i, 0) * 90ms); }
     .journey .j-dot { transform: scale(0); transform-origin: 50% 50%; transition: transform .5s cubic-bezier(0.16,1,0.3,1); transition-delay: calc(var(--i, 0) * 90ms + .12s); }
     .journey .j-item.reveal-item.in .j-dot { transform: scale(1); }
+    /* Journey 板块「成长主线」编辑刊物风引言：复用 AI 板块 ai-intro-row 的设计语言 */
+    .journey-intro {
+      max-width: 720px;
+      margin: -20px 0 56px 160px;
+      font-family: "Fraunces", "Noto Serif SC", serif;
+      font-style: italic;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.7;
+      letter-spacing: .02em;
+      color: var(--ink-2);
+      padding: 14px 0 18px;
+      border-bottom: 1px dashed var(--hair);
+    }
+    .journey-intro b {
+      color: var(--accent);
+      font-family: "Fraunces", "Noto Serif SC", serif;
+      font-style: normal;
+      font-weight: 500;
+      font-feature-settings: "tnum";
+      letter-spacing: 0;
+    }
     .j-card { max-width: 720px; }
     .j-role {
       font-family: "Noto Serif SC", serif;
@@ -2059,6 +2081,7 @@
       .ip-feat { grid-template-columns: 1fr; }
       .ip-feat-meta { padding-left: 0; padding-top: 0; border-left: none; border-top: 2px solid var(--accent); padding-top: 16px; }
       .journey::before { left: 50px; }
+      .journey-intro { margin: 0 0 40px 74px; font-size: 12px; }
       .j-item { grid-template-columns: 50px 1fr; gap: 24px; }
       .j-dot { left: 46px; }
       .footer { flex-direction: column; gap: 8px; padding: 32px 20px; text-align: center; }
@@ -2405,6 +2428,8 @@
       </div>
       <div class="sec-tag">Journey</div>
     </div>
+
+    <p class="journey-intro">五年五段经历，行业在换 / <b>主线始终只有一条</b>：<b>从「转化链路标准化」到「带队复制讲师能力」到「跨行验证方法论」再到「用 AI 把经验沉淀成产品」</b>——把「一个人会讲课」做成「一套能复制的系统」。</p>
 
     <div class="journey" id="journeyTimeline"></div>
   </section>
